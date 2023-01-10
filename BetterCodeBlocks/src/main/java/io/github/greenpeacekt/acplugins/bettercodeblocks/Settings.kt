@@ -9,7 +9,7 @@ import com.aliucord.api.SettingsAPI
 import com.aliucord.fragments.SettingsPage
 import com.discord.views.CheckedSetting
 import com.lytefast.flexinput.R
-import io.github.greenpeacekt.acplugins.bettercodeblocks
+import io.github.greenpeacekt.acplugins.BetterCodeBlocks
 
 class Settings(private val settings: SettingsAPI) : SettingsPage() {
     @SuppressLint("SetTextI18n")
