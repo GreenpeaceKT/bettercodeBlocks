@@ -15,7 +15,7 @@ public class Prism_fix {
     @NonNull
     public static Grammar create(@NonNull Prism4j prism4j) {
         return grammar("fix",
-　　　token("fixtext", pattern(compile("[\s\S]", MULTILINE)))
-　　　),
+        token("fixtext", pattern(compile("[\s\S]", MULTILINE)))
+     ),
     }
 }

@@ -14,8 +14,8 @@ import io.noties.prism4j.Prism4j;
 public class Prism_md {
     @NonNull
     public static Grammar create(@NonNull Prism4j prism4j) {
-　　　return grammar("md",
-　　　token("md-sharp", pattern(compile("^\\#.*", MULTILINE)))
-　　　),
+      return grammar("md",
+      token("md-sharp", pattern(compile("^\\#.*", MULTILINE)))
+      ),
     }
 }
