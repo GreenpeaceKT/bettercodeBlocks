@@ -50,7 +50,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
             if (BLACKLIST.contains(lang)) return false
             val realLang = GrammarLocatorImpl.realLanguageName(lang)
             return settings.getBool(realLang, SWITCHES.getOrDefault(realLang, true)) &&
-                (notSupported || bettercodeblocks.grammarLocator.grammar(bettercodeblocks.prism4j, lang) != null)
+                (notSupported || BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
         }
     }
 }
