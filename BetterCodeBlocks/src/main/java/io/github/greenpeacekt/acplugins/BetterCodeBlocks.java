@@ -1,4 +1,4 @@
-package io.github.juby210.acplugins;
+package io.github.greenpeacekt.acplugins;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
