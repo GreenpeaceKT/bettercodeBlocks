@@ -1,28 +1,36 @@
 package io.noties.prism4j.languages;
 
-import androidx.annotation.NonNull;
-import io.noties.prism4j.Prism4j;
-import io.noties.prism4j.Prism4j.Grammar;
-import io.noties.prism4j.Prism4j.Token;
-import java.util.regex.Pattern;
+import static java.util.regex.Pattern.MULTILINE;
+import static java.util.regex.Pattern.compile;
+import static io.noties.prism4j.Prism4j.grammar;
+import static io.noties.prism4j.Prism4j.pattern;
+import static io.noties.prism4j.Prism4j.token;
 
-public class Prism_diff {
-    @NonNull
-    public static Grammar create(@NonNull Prism4j prism4j) {
-        Token[] tokenArr = new Token[7];
-        tokenArr[0] = Prism4j.token("comment", Prism4j.pattern(Pattern.compile("^#.*", 8)));
-        tokenArr[1] = Prism4j.token("deleted", Prism4j.pattern(Pattern.compile("^[-–].*", 8)));
-        tokenArr[2] = Prism4j.token("inserted", Prism4j.pattern(Pattern.compile("^\\+.*", 8)));
-        tokenArr[3] = Prism4j.token("string", Prism4j.pattern(Pattern.compile("(\"|')(?:\\\\.|(?!\\1)[^\\\\\\r\\n])*\\1", 8)));
-        Prism4j.Pattern[] patternArr = new Prism4j.Pattern[1];
-        Pattern compile = Pattern.compile("^.*\\$ git .*$", 8);
-        Token[] tokenArr = new Token[7];
-        Token[] tokenArr2 = new Token[1];
-        tokenArr2[0] = Prism4j.token("parameter", Prism4j.pattern(Pattern.compile("\\s--?\\w+", 8)));
-        patternArr[0] = Prism4j.pattern(compile, false, false, null, Prism4j.grammar("inside", tokenArr2));
-        tokenArr[4] = Prism4j.token("command", patternArr);
-        tokenArr[5] = Prism4j.token("coord", Prism4j.pattern(Pattern.compile("^@@.*@@$", 8)));
-        tokenArr[6] = Prism4j.token("commit_sha1", Prism4j.pattern(Pattern.compile("^commit \\w{40}$", 8)));
-        return Prism4j.grammar("diff", tokenArr);
-    }
+import androidx.annotation.NonNull;
+
+import io.noties.prism4j.Prism4j;
+
+@SuppressWarnings("unused")
+public class Prism_git {
+
+  @NonNull
+  public static Prism4j.Grammar create(@NonNull Prism4j prism4j) {
+    return grammar("git",
+      token("comment", pattern(compile("^#.*", MULTILINE))),
+      token("deleted", pattern(compile("^[-–].*", MULTILINE))),
+      token("inserted", pattern(compile("^\\+.*", MULTILINE))),
+      token("string", pattern(compile("(\"|')(?:\\\\.|(?!\\1)[^\\\\\\r\\n])*\\1", MULTILINE))),
+      token("command", pattern(
+        compile("^.*\\$ git .*$", MULTILINE),
+        false,
+        false,
+        null,
+        grammar("inside",
+          token("parameter", pattern(compile("\\s--?\\w+", MULTILINE)))
+        )
+      )),
+      token("coord", pattern(compile("^@@.*@@$", MULTILINE))),
+      token("commit_sha1", pattern(compile("^commit \\w{40}$", MULTILINE)))
+    );
+  }
 }
