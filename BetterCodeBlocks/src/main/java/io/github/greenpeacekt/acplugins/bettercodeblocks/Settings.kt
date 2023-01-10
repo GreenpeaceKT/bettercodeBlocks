@@ -9,7 +9,7 @@ import com.aliucord.api.SettingsAPI
 import com.aliucord.fragments.SettingsPage
 import com.discord.views.CheckedSetting
 import com.lytefast.flexinput.R
-import io.github.greenpeacekt.acplugins.bettercodeBlocks
+import io.github.greenpeacekt.acplugins.bettercodeblocks
 
 class Settings(private val settings: SettingsAPI) : SettingsPage() {
     @SuppressLint("SetTextI18n")
@@ -50,7 +50,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
             if (BLACKLIST.contains(lang)) return false
             val realLang = GrammarLocatorImpl.realLanguageName(lang)
             return settings.getBool(realLang, SWITCHES.getOrDefault(realLang, true)) &&
-                (notSupported || bettercodeBlocks.grammarLocator.grammar(bettercodeBlocks.prism4j, lang) != null)
+                (notSupported || bettercodeblocks.grammarLocator.grammar(bettercodeblocks.prism4j, lang) != null)
         }
     }
 }
