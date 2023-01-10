@@ -16,6 +16,6 @@ public class Prism_md {
     public static Grammar create(@NonNull Prism4j prism4j) {
       return grammar("md",
       token("md-sharp", pattern(compile("^\\#.*", MULTILINE)))
-      ),
+      )
     }
 }
