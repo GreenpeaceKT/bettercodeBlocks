@@ -1,10 +1,11 @@
 package io.noties.prism4j.languages;
 
-import androidx.annotation.NonNull;
-import static io.noties.prism4j.Prism4j.Grammar;
-import static io.noties.prism4j.Prism4j.Token;
-import java.util.regex.Pattern;
 import static java.util.regex.Pattern.MULTILINE;
+import static java.util.regex.Pattern.compile;
+import static io.noties.prism4j.Prism4j.grammar;
+import static io.noties.prism4j.Prism4j.pattern;
+import static io.noties.prism4j.Prism4j.token;
+
 import androidx.annotation.NonNull;
 
 import io.noties.prism4j.Prism4j;
