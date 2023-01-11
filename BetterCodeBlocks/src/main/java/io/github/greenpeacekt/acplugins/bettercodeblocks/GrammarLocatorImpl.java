@@ -57,24 +57,16 @@ public final class GrammarLocatorImpl implements GrammarLocator {
     @Nullable
     protected Prism4j.Grammar obtainGrammar(@NonNull Prism4j prism4j, @NonNull String name) {
         switch (name) {
-            case "brainfuck":
-                return Prism_brainfuck.create(prism4j);
-            case "c":
-                return Prism_c.create(prism4j);
             case "clike":
                 return Prism_clike.create(prism4j);
-            case "clojure":
-                return Prism_clojure.create(prism4j);
-            case "cpp":
-                return Prism_cpp.create(prism4j);
+            
             case "csharp":
                 return Prism_csharp.create(prism4j);
             case "css":
                 return Prism_css.create(prism4j);
             case "css-extras":
                 return Prism_css_extras.create(prism4j);
-            case "dart":
-                return Prism_dart.create(prism4j);
+            
             case "diff":
                 return Prism_diff.create(prism4j);
             case "fix":
@@ -83,32 +75,22 @@ public final class GrammarLocatorImpl implements GrammarLocator {
                 return Prism_md.create(prism4j);
             case "go":
                 return Prism_go.create(prism4j);
-            case "groovy":
-                return Prism_groovy.create(prism4j);
+            
             case "java":
                 return Prism_java.create(prism4j);
             case "javascript":
                 return Prism_javascript.create(prism4j);
             case "json":
                 return Prism_json.create(prism4j);
-            case "kotlin":
-                return Prism_kotlin.create(prism4j);
-            case "latex":
-                return Prism_latex.create(prism4j);
-            case "makefile":
-                return Prism_makefile.create(prism4j);
+            
+            
+            
             case "markdown":
                 return Prism_markdown.create(prism4j);
-            case "markup":
-                return Prism_markup.create(prism4j);
+            
             case "python":
                 return Prism_python.create(prism4j);
-            case "scala":
-                return Prism_scala.create(prism4j);
-            case "sql":
-                return Prism_sql.create(prism4j);
-            case "swift":
-                return Prism_swift.create(prism4j);
+            
             case "yaml":
                 return Prism_yaml.create(prism4j);
         }
@@ -117,10 +99,7 @@ public final class GrammarLocatorImpl implements GrammarLocator {
 
     protected void triggerModify(@NonNull Prism4j prism4j, @NonNull String name) {
         switch (name) {
-            case "markup":
-                prism4j.grammar("css");
-                prism4j.grammar("javascript");
-                break;
+            
             case "css":
                 prism4j.grammar("css-extras");
                 break;
