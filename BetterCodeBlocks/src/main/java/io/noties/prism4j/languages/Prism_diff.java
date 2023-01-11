@@ -18,7 +18,7 @@ public class Prism_diff {
     return grammar("diff",
       token("comment", pattern(compile("^#.*", MULTILINE))),
       token("deleted", pattern(compile("^[-–].*", MULTILINE))),
-      token("inserted", pattern(compile("^\\+.*", MULTILINE))),
+      token("inserted", pattern(compile("^\\+.*|^\\!.*", MULTILINE))),
       token("string", pattern(compile("(\"|')(?:\\\\.|(?!\\1)[^\\\\\\r\\n])*\\1", MULTILINE))),
       token("command", pattern(
         compile("^.*\\$ diff .*$", MULTILINE),
