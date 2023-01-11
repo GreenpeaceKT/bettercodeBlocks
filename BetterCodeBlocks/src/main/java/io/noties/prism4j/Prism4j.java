@@ -2,72 +2,26 @@ package io.noties.prism4j;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 
 public class Prism4j {
-    private final GrammarLocator grammarLocator;
-
-    public interface Visitor {
-        void visit(@NonNull List<? extends Node> list);
-    }
 
     public interface Grammar {
+
         @NonNull
         String name();
 
+        // should mention that returned array is mutable
         @NonNull
         List<Token> tokens();
     }
 
-    public interface Pattern {
-        @Nullable
-        String alias();
-
-        boolean greedy();
-
-        @Nullable
-        Grammar inside();
-
-        boolean lookbehind();
-
-        @NonNull
-        java.util.regex.Pattern regex();
-    }
-
-    public interface Node {
-        boolean isSyntax();
-
-        int textLength();
-    }
-
-    public interface Syntax extends Node {
-        @Nullable
-        String alias();
-
-        @NonNull
-        List<? extends Node> children();
-
-        boolean greedy();
-
-        @NonNull
-        String matchedString();
-
-        boolean tokenized();
-
-        @NonNull
-        String type();
-    }
-
-    public interface Text extends Node {
-        @NonNull
-        String literal();
-    }
-
     public interface Token {
+
         @NonNull
         String name();
 
@@ -75,6 +29,91 @@ public class Prism4j {
         List<Pattern> patterns();
     }
 
+    public interface Pattern {
+
+        @NonNull
+        java.util.regex.Pattern regex();
+
+        boolean lookbehind();
+
+        boolean greedy();
+
+        @Nullable
+        String alias();
+
+        @Nullable
+        Grammar inside();
+    }
+
+    /**
+     * Basic structure that represents parsing state
+     *
+     * @see Text
+     * @see Syntax
+     */
+    public interface Node {
+
+        /**
+         * @return raw text length. For {@link Text} node it\'s {@link Text#literal()} length
+         * and for {@link Syntax} it is {@link Syntax#matchedString()} length
+         */
+        int textLength();
+
+        /**
+         * As we have only two types maybe doing a lot of `instanceof` checks is not that required
+         *
+         * @return a boolean indicating if this node is an instance of {@link Syntax}
+         */
+        boolean isSyntax();
+    }
+
+    public interface Text extends Node {
+
+        @NonNull
+        String literal();
+    }
+
+    public interface Syntax extends Node {
+
+        @NonNull
+        String type();
+
+        @NonNull
+        List<? extends Node> children();
+
+        @Nullable
+        String alias();
+
+        @NonNull
+        String matchedString();
+
+        boolean greedy();
+
+        /**
+         * The main aim for this flag is to be able to properly construct simplified
+         * array of tokens during tests. If it\'s set to true, then children will be
+         * inside another array. Otherwise they will be _flattened_ into the same array
+         * as token type information
+         *
+         * @return a flag indicating if children of this node were tokenized
+         */
+        boolean tokenized();
+    }
+
+    /**
+     * @see AbsVisitor
+     */
+    public interface Visitor {
+        void visit(@NonNull List<? extends Node> nodes);
+    }
+
+    /**
+     * Factory method to create a {@link Grammar}
+     *
+     * @param name   of the defined grammar
+     * @param tokens a list of {@link Token}s
+     * @return an instance of {@link Grammar}
+     */
     @NonNull
     public static Grammar grammar(@NonNull String name, @NonNull List<Token> tokens) {
         return new GrammarImpl(name, tokens);
@@ -106,19 +145,34 @@ public class Prism4j {
     }
 
     @NonNull
-    public static Pattern pattern(@NonNull java.util.regex.Pattern regex, boolean lookbehind, boolean greedy) {
+    public static Pattern pattern(
+            @NonNull java.util.regex.Pattern regex,
+            boolean lookbehind,
+            boolean greedy) {
         return new PatternImpl(regex, lookbehind, greedy, null, null);
     }
 
     @NonNull
-    public static Pattern pattern(@NonNull java.util.regex.Pattern regex, boolean lookbehind, boolean greedy, @Nullable String alias) {
+    public static Pattern pattern(
+            @NonNull java.util.regex.Pattern regex,
+            boolean lookbehind,
+            boolean greedy,
+            @Nullable String alias) {
         return new PatternImpl(regex, lookbehind, greedy, alias, null);
     }
 
     @NonNull
-    public static Pattern pattern(@NonNull java.util.regex.Pattern regex, boolean lookbehind, boolean greedy, @Nullable String alias, @Nullable Grammar inside) {
+    public static Pattern pattern(
+            @NonNull java.util.regex.Pattern regex,
+            boolean lookbehind,
+            boolean greedy,
+            @Nullable String alias,
+            @Nullable Grammar inside) {
         return new PatternImpl(regex, lookbehind, greedy, alias, inside);
     }
+
+
+    private final GrammarLocator grammarLocator;
 
     public Prism4j(@NonNull GrammarLocator grammarLocator) {
         this.grammarLocator = grammarLocator;
@@ -126,7 +180,7 @@ public class Prism4j {
 
     @NonNull
     public List<Node> tokenize(@NonNull String text, @NonNull Grammar grammar) {
-        List<Node> entries = new ArrayList(3);
+        final List<Node> entries = new ArrayList<>(3);
         entries.add(new TextImpl(text));
         matchGrammar(text, entries, grammar, 0, 0, false, null);
         return entries;
@@ -134,248 +188,167 @@ public class Prism4j {
 
     @Nullable
     public Grammar grammar(@NonNull String name) {
-        return this.grammarLocator.grammar(this, name);
+        return grammarLocator.grammar(this, name);
     }
 
-    private void matchGrammar(@NonNull String text, @NonNull List<Node> entries, @NonNull Grammar grammar, int index, int startPosition, boolean oneShot, @Nullable Token target) {
-        String str = text;
-        List<Node> list = entries;
-        int textLength = text.length();
-        Iterator it = grammar.tokens().iterator();
-        while (it.hasNext()) {
-            Token token = (Token) it.next();
-            if (token != target) {
-                Iterator it2;
-                Iterator it3 = token.patterns().iterator();
-                while (it3.hasNext()) {
-                    java.util.regex.Pattern regex;
-                    int textLength2;
-                    Iterator it4;
-                    Pattern pattern;
-                    int i;
-                    Token token2;
-                    Pattern pattern2 = (Pattern) it3.next();
-                    boolean lookbehind = pattern2.lookbehind();
-                    boolean greedy = pattern2.greedy();
-                    int lookbehindLength = 0;
-                    java.util.regex.Pattern regex2 = pattern2.regex();
-                    int i2 = index;
-                    int position = startPosition;
-                    while (i2 < entries.size()) {
-                        if (entries.size() <= textLength) {
-                            int i3;
-                            Node node = (Node) list.get(i2);
-                            if (isSyntaxNode(node)) {
-                                regex = regex2;
-                                textLength2 = textLength;
-                                it2 = it;
-                                it4 = it3;
-                                pattern = pattern2;
-                                i3 = 1;
-                            } else {
-                                int lookbehindLength2;
-                                Matcher matcher;
-                                String str2;
-                                int greedyAdd;
-                                boolean greedyMatch;
-                                String str3 = ((Text) node).literal();
-                                int greedyAdd2;
-                                if (!greedy || i2 == entries.size() - 1) {
-                                    lookbehindLength2 = lookbehindLength;
-                                    i = i2;
-                                    greedyAdd2 = 0;
-                                    textLength2 = textLength;
-                                    matcher = regex2.matcher(str3);
-                                    textLength = 1;
-                                    str2 = str3;
-                                    greedyAdd = greedyAdd2;
-                                    greedyMatch = false;
-                                    i2 = i;
-                                } else {
-                                    matcher = regex2.matcher(str);
-                                    matcher.region(position, textLength);
-                                    if (!matcher.find()) {
-                                        textLength2 = textLength;
-                                        it2 = it;
-                                        it4 = it3;
-                                        break;
-                                    }
-                                    int from;
-                                    int to;
-                                    greedyAdd2 = matcher.start();
-                                    if (lookbehind) {
-                                        from = greedyAdd2 + matcher.group(1).length();
-                                    } else {
-                                        from = greedyAdd2;
-                                    }
-                                    lookbehindLength2 = lookbehindLength;
-                                    lookbehindLength = matcher.start() + matcher.group(0).length();
-                                    greedyAdd2 = i2;
-                                    greedyAdd = position;
-                                    i = i2;
-                                    i2 = entries.size();
-                                    textLength2 = textLength;
-                                    textLength = greedyAdd;
-                                    Matcher matcher2 = matcher;
-                                    int k = greedyAdd2;
-                                    greedyAdd2 = 0;
-                                    int greedyAdd3 = position;
-                                    position = i;
-                                    while (k < i2) {
-                                        if (textLength >= lookbehindLength) {
-                                            if (!isSyntaxNode((Node) list.get(k))) {
-                                                to = lookbehindLength;
-                                                if (isGreedyNode((Node) list.get(k - 1)) != 0) {
-                                                    break;
-                                                }
-                                            }
-                                            break;
-                                        }
-                                        to = lookbehindLength;
-                                        textLength += ((Node) list.get(k)).textLength();
-                                        if (from >= textLength) {
-                                            position++;
-                                            greedyAdd3 = textLength;
-                                        }
-                                        k++;
-                                        lookbehindLength = to;
-                                    }
-                                    to = lookbehindLength;
-                                    if (isSyntaxNode((Node) list.get(position)) != 0) {
-                                        i2 = position;
-                                        position = greedyAdd3;
-                                        regex = regex2;
-                                        it2 = it;
-                                        it4 = it3;
-                                        pattern = pattern2;
-                                        lookbehindLength = lookbehindLength2;
-                                        i3 = 1;
-                                    } else {
-                                        lookbehindLength = k - position;
-                                        str3 = str.substring(greedyAdd3, textLength);
-                                        textLength = lookbehindLength;
-                                        greedyMatch = true;
-                                        i2 = position;
-                                        str2 = str3;
-                                        position = greedyAdd3;
-                                        Matcher matcher3 = matcher2;
-                                        greedyAdd = -greedyAdd3;
-                                        matcher = matcher3;
-                                    }
-                                }
-                                if (greedyMatch || matcher.find()) {
-                                    int lookbehindLength3;
-                                    String substring;
-                                    int position2;
-                                    int i22;
-                                    List<? extends Node> tokenEntries;
-                                    if (lookbehind) {
-                                        String group = matcher.group(1);
-                                        lookbehindLength3 = group != null ? group.length() : 0;
-                                    } else {
-                                        lookbehindLength3 = lookbehindLength2;
-                                    }
-                                    lookbehindLength = (matcher.start() + greedyAdd) + lookbehindLength3;
-                                    if (lookbehindLength3 > 0) {
-                                        substring = matcher.group().substring(lookbehindLength3);
-                                    } else {
-                                        substring = matcher.group();
-                                    }
-                                    it2 = it;
-                                    int to2 = lookbehindLength + substring.length();
-                                    i = lookbehindLength3;
-                                    for (lookbehindLength3 = 0; lookbehindLength3 < textLength; lookbehindLength3++) {
-                                        list.remove(i2);
-                                    }
-                                    lookbehindLength3 = i2;
-                                    if (lookbehindLength != 0) {
-                                        regex = regex2;
-                                        String before = str2.substring(null, lookbehindLength);
-                                        i2++;
-                                        position += before.length();
-                                        lookbehindLength2 = lookbehindLength3 + 1;
-                                        list.add(lookbehindLength3, new TextImpl(before));
-                                        position2 = position;
-                                        i22 = lookbehindLength2;
-                                        lookbehindLength2 = i2;
-                                    } else {
-                                        regex = regex2;
-                                        lookbehindLength2 = i2;
-                                        position2 = position;
-                                        i22 = lookbehindLength3;
-                                    }
-                                    Grammar inside = pattern2.inside();
-                                    boolean hasInside = inside != null;
-                                    if (hasInside) {
-                                        tokenEntries = tokenize(substring, inside);
-                                    } else {
-                                        tokenEntries = Collections.singletonList(new TextImpl(substring));
-                                    }
-                                    SyntaxImpl syntaxImpl = r0;
-                                    it4 = it3;
-                                    int i23 = i22 + 1;
-                                    String match = substring;
-                                    String str4 = str2;
-                                    pattern = pattern2;
-                                    i3 = 1;
-                                    SyntaxImpl syntaxImpl2 = new SyntaxImpl(token.name(), tokenEntries, pattern2.alias(), substring, greedy, hasInside);
-                                    list.add(i22, syntaxImpl);
-                                    if (to2 < str4.length()) {
-                                        list.add(i23, new TextImpl(str4.substring(to2)));
-                                    }
-                                    if (textLength != i3) {
-                                        matchGrammar(text, entries, grammar, lookbehindLength2, position2, true, token);
-                                    }
-                                    if (oneShot) {
-                                        break;
-                                    }
-                                    i2 = lookbehindLength2;
-                                    lookbehindLength = i;
-                                    position = position2;
-                                } else if (oneShot) {
-                                    it2 = it;
-                                    it4 = it3;
-                                    break;
-                                } else {
-                                    regex = regex2;
-                                    it2 = it;
-                                    it4 = it3;
-                                    pattern = pattern2;
-                                    lookbehindLength = lookbehindLength2;
-                                    i3 = 1;
-                                }
-                            }
-                            position += ((Node) list.get(i2)).textLength();
-                            i2 += i3;
-                            token2 = target;
-                            regex2 = regex;
-                            textLength = textLength2;
-                            it = it2;
-                            it3 = it4;
-                            pattern2 = pattern;
-                        } else {
-                            StringBuilder stringBuilder = new StringBuilder();
-                            stringBuilder.append("Prism4j internal error. Number of entry nodes is greater that the text length.\nNodes: ");
-                            stringBuilder.append(list);
-                            stringBuilder.append("\nText: ");
-                            stringBuilder.append(str);
-                            throw new RuntimeException(stringBuilder.toString());
-                        }
-                    }
-                    i = i2;
-                    regex = regex2;
-                    textLength2 = textLength;
-                    it2 = it;
-                    it4 = it3;
-                    pattern = pattern2;
-                    token2 = target;
-                    textLength = textLength2;
-                    it = it2;
-                    it3 = it4;
-                }
-                it2 = it;
-            } else {
+    private void matchGrammar(
+            @NonNull String text,
+            @NonNull List<Node> entries,
+            @NonNull Grammar grammar,
+            int index,
+            int startPosition,
+            boolean oneShot,
+            @Nullable Token target
+    ) {
+
+        final int textLength = text.length();
+
+        for (Token token : grammar.tokens()) {
+
+            if (token == target) {
                 return;
+            }
+
+            for (Pattern pattern : token.patterns()) {
+
+                final boolean lookbehind = pattern.lookbehind();
+                final boolean greedy = pattern.greedy();
+                int lookbehindLength = 0;
+
+                final java.util.regex.Pattern regex = pattern.regex();
+
+                // Don't cache textLength as it changes during the loop
+                for (int i = index, position = startPosition; i < entries.size(); position += entries.get(i).textLength(), ++i) {
+
+                    if (entries.size() > textLength) {
+                        throw new RuntimeException("Prism4j internal error. Number of entry nodes " +
+                                "is greater that the text length.\n" +
+                                "Nodes: " + entries + "\n" +
+                                "Text: " + text);
+                    }
+
+                    final Node node = entries.get(i);
+                    if (isSyntaxNode(node)) {
+                        continue;
+                    }
+
+                    String str = ((Text) node).literal();
+
+                    final Matcher matcher;
+                    final int deleteCount;
+                    final boolean greedyMatch;
+                    int greedyAdd = 0;
+
+                    if (greedy && i != entries.size() - 1) {
+
+                        matcher = regex.matcher(text);
+                        // limit search to the position (?)
+                        matcher.region(position, textLength);
+
+                        if (!matcher.find()) {
+                            break;
+                        }
+
+                        int from = matcher.start();
+
+                        if (lookbehind) {
+                            from += matcher.group(1).length();
+                        }
+                        final int to = matcher.start() + matcher.group(0).length();
+
+                        int k = i;
+                        int p = position;
+
+                        for (int len = entries.size(); k < len && (p < to || (!isSyntaxNode(entries.get(k)) && !isGreedyNode(entries.get(k - 1)))); ++k) {
+                            p += entries.get(k).textLength();
+                            // Move the index i to the element in strarr that is closest to from
+                            if (from >= p) {
+                                i += 1;
+                                position = p;
+                            }
+                        }
+
+                        if (isSyntaxNode(entries.get(i))) {
+                            continue;
+                        }
+
+                        deleteCount = k - i;
+                        str = text.substring(position, p);
+                        greedyMatch = true;
+                        greedyAdd = -position;
+
+                    } else {
+                        matcher = regex.matcher(str);
+                        deleteCount = 1;
+                        greedyMatch = false;
+                    }
+
+                    if (!greedyMatch && !matcher.find()) {
+                        if (oneShot) {
+                            break;
+                        }
+                        continue;
+                    }
+
+                    if (lookbehind) {
+                        final String group = matcher.group(1);
+                        lookbehindLength = group != null ? group.length() : 0;
+                    }
+
+                    final int from = matcher.start() + greedyAdd + lookbehindLength;
+                    final String match;
+                    if (lookbehindLength > 0) {
+                        match = matcher.group().substring(lookbehindLength);
+                    } else {
+                        match = matcher.group();
+                    }
+                    final int to = from + match.length();
+
+                    for (int d = 0; d < deleteCount; d++) {
+                        entries.remove(i);
+                    }
+
+                    int i2 = i;
+
+                    if (from != 0) {
+                        final String before = str.substring(0, from);
+                        i += 1;
+                        position += before.length();
+                        entries.add(i2++, new TextImpl(before));
+                    }
+
+                    final List<? extends Node> tokenEntries;
+                    final Grammar inside = pattern.inside();
+                    final boolean hasInside = inside != null;
+                    if (hasInside) {
+                        tokenEntries = tokenize(match, inside);
+                    } else {
+                        tokenEntries = Collections.singletonList(new TextImpl(match));
+                    }
+
+                    entries.add(i2++, new SyntaxImpl(
+                            token.name(),
+                            tokenEntries,
+                            pattern.alias(),
+                            match,
+                            greedy,
+                            hasInside
+                    ));
+
+                    // important thing here (famous off-by one error) to check against full length (not `length - 1`)
+                    if (to < str.length()) {
+                        final String after = str.substring(to);
+                        entries.add(i2, new TextImpl(after));
+                    }
+
+                    if (deleteCount != 1) {
+                        matchGrammar(text, entries, grammar, i, position, true, token);
+                    }
+
+                    if (oneShot) {
+                        break;
+                    }
+                }
             }
         }
     }
