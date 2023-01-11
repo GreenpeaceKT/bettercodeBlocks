@@ -11,17 +11,17 @@ import androidx.annotation.NonNull;
 import io.noties.prism4j.Prism4j;
 
 @SuppressWarnings("unused")
-public class Prism_git {
+public class Prism_diff {
 
   @NonNull
   public static Prism4j.Grammar create(@NonNull Prism4j prism4j) {
-    return grammar("git",
+    return grammar("diff",
       token("comment", pattern(compile("^#.*", MULTILINE))),
       token("deleted", pattern(compile("^[-–].*", MULTILINE))),
       token("inserted", pattern(compile("^\\+.*", MULTILINE))),
       token("string", pattern(compile("(\"|')(?:\\\\.|(?!\\1)[^\\\\\\r\\n])*\\1", MULTILINE))),
       token("command", pattern(
-        compile("^.*\\$ git .*$", MULTILINE),
+        compile("^.*\\$ diff .*$", MULTILINE),
         false,
         false,
         null,
