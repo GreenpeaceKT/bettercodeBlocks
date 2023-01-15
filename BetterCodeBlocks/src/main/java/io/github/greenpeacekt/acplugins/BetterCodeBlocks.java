@@ -87,7 +87,7 @@ public final class BetterCodeBlocks extends Plugin {
     }
 
     public Node<BasicRenderContext> wrapInNodes(String lang, CharSequence content) {
-        return new BlockBackgroundNode<>(false, new BCBNode<>(lang, content));
+        return //new BlockBackgroundNode<>(false, new BCBNode<>(lang, content));
     }
 
     public Node<BasicRenderContext> renderCodeBlock(String lang, String content) {
