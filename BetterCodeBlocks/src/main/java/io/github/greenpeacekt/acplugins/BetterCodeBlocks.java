@@ -58,6 +58,7 @@ public final class BetterCodeBlocks extends Plugin {
                 param.args[1] = nodes;
             }
         }));
+        
 
         /*patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
