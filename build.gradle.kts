@@ -20,7 +20,7 @@ allprojects {
         // mavenLocal()
         google()
         mavenCentral()
-        maven("https://maven.aliucord.com/snapshots")
+        //maven("https://maven.aliucord.com/snapshots")
     }
 }
 
