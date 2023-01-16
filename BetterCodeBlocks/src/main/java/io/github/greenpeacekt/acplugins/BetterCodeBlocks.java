@@ -59,7 +59,7 @@ public final class BetterCodeBlocks extends Plugin {
             }
         }));
 
-        patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
+        /*patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
                 var lang = (String) param.args[2];
                 if (!Settings.Companion.get(settings, lang)) return;
@@ -73,7 +73,7 @@ public final class BetterCodeBlocks extends Plugin {
                 param.setResult(builder);
             })
         );
-    }
+    */}
 
     @Override
     public void stop(Context context) {
