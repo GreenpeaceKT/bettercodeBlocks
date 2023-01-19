@@ -12,6 +12,7 @@ aliucord {
         * diff,md,fixを言語として追加
         * いくつかの言語の色彩を変更
         * 軽微な不具合を修整
+        # v1.1.0
         
     """.trimIndent())
     
