@@ -36,7 +36,7 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
         super.render(builder, rc);
     }
 
-    public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
+    public void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
         if (BetterCodeBlocks.Devop()) {
             builder.append(lang).append("\n");
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
