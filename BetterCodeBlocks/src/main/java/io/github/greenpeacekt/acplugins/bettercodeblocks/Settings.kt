@@ -11,7 +11,31 @@ import com.discord.views.CheckedSetting
 import com.lytefast.flexinput.R
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks
 
-class Settings(private val settings: SettingsAPI) : SettingsPage() {
+class Settings(private val plugin: BetterCodeBlocks) : AppBottomSheet() {
+        override fun getContentViewResId() = 0
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View {
+            val context = inflater.context
+            val layout = LinearLayout(context)
+            layout.setBackgroundColor(ColorCompat.getThemedColor(context, R.b.colorBackgroundPrimary))
+
+            layout.addView(Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
+                val key = "sort"
+                isChecked = plugin.settings.getBool(key, true)
+                setOnCheckedListener {
+                    plugin.settings.setBool(key, it)
+                    if (it) plugin.sortExperiments()
+                    else {
+                        plugin.sortUnpatch?.run()
+                        plugin.sortUnpatch = null
+                    }
+                }
+            })
+            return layout
+        }
+    }
+    
+/*class Settings(private val settings: SettingsAPI) : SettingsPage() {
     @SuppressLint("SetTextI18n")
     override fun onViewBound(view: View) {
         super.onViewBound(view)
@@ -36,7 +60,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
         }
     }
 
-    /*companion object {
+    companion object {
         private val BLACKLIST = listOf("protobuf", "proto", "pb", "rs", "rust", "cql", "cr", "crystal")
         val SWITCHES = mapOf("js" to true, "json" to true, "go" to false)
 
@@ -48,5 +72,5 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
             return settings.getBool(realLang, SWITCHES.getOrDefault(realLang, true)) &&
                 (notSupported || BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
         }
-    }*/
-}
+    }
+}*/
