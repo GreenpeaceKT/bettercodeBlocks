@@ -9,6 +9,7 @@ import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.PreHook;
 import com.aliucord.utils.MDUtils;
 import com.aliucord.api.SettingsAPI;
+import com.aliucord.fragments.SettingsPage
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.node.Node.a;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
@@ -18,7 +19,7 @@ import java.util.regex.Matcher;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.Settings;
 
-public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
+public final class LangNode<RC extends BasicRenderContext> extends a<RC> extends Plugin {
     private final String lang;
 
     @SafeVarargs
