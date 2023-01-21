@@ -28,10 +28,5 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
             setOnCheckedListener { settings.setBool(key, it) }
         })
     }
-    companion object {
-        fun get(Settings: SettingsAPI): Boolean {
-            val keya = "dev"
-            return settings.getBool(keya, true)
-        }
-    }
+    
 }
