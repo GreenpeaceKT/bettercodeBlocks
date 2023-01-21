@@ -19,7 +19,7 @@ import io.github.greenpeacekt.acplugins.BetterCodeBlocks;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 
 public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
-    private final String lang;
+    /*private final String lang;
 
     @SafeVarargs
     public LangNode(String lang, Node<RC>... child) {
@@ -42,5 +42,5 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
         }
-    }
+    }*/
 }
