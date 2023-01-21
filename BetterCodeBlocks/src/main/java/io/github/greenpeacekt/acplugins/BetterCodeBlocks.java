@@ -51,16 +51,16 @@ public final class BetterCodeBlocks extends Plugin {
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
         }));
 
-        patcher.patch(BlockBackgroundNode.class.getDeclaredConstructor(boolean.class, Node[].class), new PreHook(param -> {
+        /*patcher.patch(BlockBackgroundNode.class.getDeclaredConstructor(boolean.class, Node[].class), new PreHook(param -> {
             var nodes = (Node<BasicRenderContext>[]) param.args[1];
             if (nodes.length == 1 && nodes[0] instanceof CodeNode) {
                 nodes[0] = new LangNode<>(((CodeNode<BasicRenderContext>) nodes[0]).a, nodes[0]);
                 param.args[1] = nodes;
             }
-        }));
+        }));*/
         
 
-        /*patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
+        patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
                 var lang = (String) param.args[2];
                 if (!Settings.Companion.get(settings, lang)) return;
@@ -73,7 +73,7 @@ public final class BetterCodeBlocks extends Plugin {
                 if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
                 param.setResult(builder);
             })
-        );*/
+        );
     }
 
     @Override
