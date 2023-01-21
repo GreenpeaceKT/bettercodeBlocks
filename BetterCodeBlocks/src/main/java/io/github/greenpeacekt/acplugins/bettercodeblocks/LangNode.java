@@ -17,7 +17,6 @@ import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import java.util.regex.Matcher;
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
-import io.github.greenpeacekt.acplugins.bettercodeblocks.;
 
 public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     private final String lang;
