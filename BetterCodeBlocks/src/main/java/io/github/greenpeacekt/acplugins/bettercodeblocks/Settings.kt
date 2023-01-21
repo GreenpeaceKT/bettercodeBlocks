@@ -10,7 +10,7 @@ import com.aliucord.fragments.SettingsPage
 import com.discord.views.CheckedSetting
 import com.lytefast.flexinput.R
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks
-
+import io.github.greenpeacekt.acplugins.bettercodeblocks.LangNode
  
 class Settings(private val settings: SettingsAPI) : SettingsPage() {
     @SuppressLint("SetTextI18n")
