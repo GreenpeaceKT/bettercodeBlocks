@@ -25,6 +25,7 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     public LangNode(String lang, Node<RC>... child) {
         super(child);
         this.lang = lang;
+        settingsTab = new SettingsTab(Settings.class).withArgs(settings);
     }
 
     public void render(SpannableStringBuilder builder, RC rc) {
