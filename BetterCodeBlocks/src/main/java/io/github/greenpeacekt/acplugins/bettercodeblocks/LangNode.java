@@ -15,18 +15,18 @@ import com.discord.simpleast.core.node.Node.a;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 
 import java.util.regex.Matcher;
-
+import io.github.greenpeacekt.acplugins.BetterCodeBlocks;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
-import io.github.greenpeacekt.acplugins.bettercodeblocks.Settings;
+import io.github.greenpeacekt.acplugins.bettercodeblocks.;
 
-public final class LangNode<RC extends BasicRenderContext> extends a<RC> extends Plugin{
+public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     private final String lang;
 
     @SafeVarargs
     public LangNode(String lang, Node<RC>... child) {
         super(child);
         this.lang = lang;
-        settingsTab = new SettingsTab(Settings.class).withArgs(settings);
+        
     }
 
     public void render(SpannableStringBuilder builder, RC rc) {
@@ -38,7 +38,7 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> extends
     }
 
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
-        if (settings.getBool("dev",true)) {
+        if (BetterCodeBlocks.Devop()) {
             builder.append(lang).append("\n");
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
