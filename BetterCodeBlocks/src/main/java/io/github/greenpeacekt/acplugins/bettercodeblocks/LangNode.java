@@ -3,6 +3,7 @@ package io.github.greenpeacekt.acplugins.bettercodeblocks;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
+import com.aliucord.api.SettingsAPI;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.node.Node.a;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
@@ -27,7 +28,7 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     }
 
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
-        if (settings.getbool("dev",true)){
+        if (SettingsAPI.getbool("dev",true)){
             builder.append(lang).append("\n");
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
