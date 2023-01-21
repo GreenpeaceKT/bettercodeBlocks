@@ -30,8 +30,8 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
     }
     companion object {
         fun get(settings: SettingsAPI): Boolean {
-            val check = settings.getBool("dev", true)
-            return check
+            val keya = "dev"
+            return settings.getBool(key, true)
         }
     }
 }
