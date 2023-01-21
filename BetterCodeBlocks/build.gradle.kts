@@ -17,5 +17,5 @@ aliucord {
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
