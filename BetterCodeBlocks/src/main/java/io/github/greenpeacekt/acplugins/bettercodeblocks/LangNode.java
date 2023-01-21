@@ -7,6 +7,8 @@ import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.node.Node.a;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 
+import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
+
 public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     private final String lang;
 
@@ -25,8 +27,10 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     }
 
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
-        /*builder.append(lang).append("\n");
+        if (settings.getbool("dev",true){
+        builder.append(lang).append("\n");
         builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
         Utils.fixColor(builder, ctx, a);
+        }
     */}
 }
