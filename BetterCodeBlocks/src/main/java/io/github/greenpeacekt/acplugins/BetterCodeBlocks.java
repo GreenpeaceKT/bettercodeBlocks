@@ -81,7 +81,7 @@ public final class BetterCodeBlocks extends Plugin {
         patcher.unpatchAll();
     }
     
-    public Boolean Devop(){
+    public static Boolean Devop(){
         return settings.getBool("dev",true);
     }
 
