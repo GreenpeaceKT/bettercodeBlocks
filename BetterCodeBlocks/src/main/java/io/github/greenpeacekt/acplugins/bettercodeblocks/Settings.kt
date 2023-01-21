@@ -22,7 +22,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
         val context = view.context
         val layout = linearLayout
 
-        layout.addView(com.aliucord.Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Not supported languages", null).apply {
+        layout.addView(com.aliucord.Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
             val key = "dev"
             isChecked = settings.getBool(key, false)
             setOnCheckedListener { settings.setBool(key, it) }
