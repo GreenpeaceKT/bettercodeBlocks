@@ -31,7 +31,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
     companion object {
         fun get(settings: SettingsAPI): Boolean {
             val keya = "dev"
-            return settings.getBool(key, true)
+            return settings.getBool(keya, true)
         }
     }
 }
