@@ -1,4 +1,4 @@
-version = "1.0.0"
+version = "1.1.0"
 
 description = "Appear Syntax highlight!!!!!!"
 
@@ -12,6 +12,8 @@ aliucord {
         * diff,md,fixを言語として追加
         * いくつかの言語の色彩を変更
         * 軽微な不具合を修整
+        # v1.1.0
+        * 言語表示削除
         
     """.trimIndent())
     

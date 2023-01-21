@@ -23,18 +23,18 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
 
     @SafeVarargs
     public LangNode(String lang, Node<RC>... child) {
-        /*super(child);
+        super(child);
         this.lang = lang;
         
-    */}
+    }
 
     public void render(SpannableStringBuilder builder, RC rc) {
-        /*if (!(builder == null || this.lang == null)) {
+        if (!(builder == null || this.lang == null)) {
             Utils.ensureEndsWithNewline(builder);
             renderLang(builder, rc.getContext(), this.lang, builder.length());
         }
         super.render(builder, rc);
-    */}
+    }
 
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
         /*if (Settings.Companion.get()) {
