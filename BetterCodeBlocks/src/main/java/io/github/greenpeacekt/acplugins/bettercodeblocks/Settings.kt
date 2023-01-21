@@ -20,10 +20,6 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
 
         val context = view.context
         val layout = linearLayout
-        layout.addView(TextView(context, null, 0, R.i.UiKit_Settings_Item_Header).apply {
-            typeface = ResourcesCompat.getFont(context, Constants.Fonts.whitney_semibold)
-            text = "Use Prism4j for:"
-        })
 
         layout.addView(com.aliucord.Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Not supported languages", null).apply {
             val key = "notSupported"
@@ -40,7 +36,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
         }
     }
 
-    companion object {
+    /*companion object {
         private val BLACKLIST = listOf("protobuf", "proto", "pb", "rs", "rust", "cql", "cr", "crystal")
         val SWITCHES = mapOf("js" to true, "json" to true, "go" to false)
 
@@ -52,5 +48,5 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
             return settings.getBool(realLang, SWITCHES.getOrDefault(realLang, true)) &&
                 (notSupported || BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
         }
-    }
+    }*/
 }
