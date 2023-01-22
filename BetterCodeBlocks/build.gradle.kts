@@ -1,4 +1,4 @@
-version = "1.1.0"
+version = "1.1.1"
 
 description = "Appear Syntax highlight!!!!!!"
 
@@ -14,6 +14,10 @@ aliucord {
         * 軽微な不具合を修整
         # v1.1.0
         * 言語表示削除
+        # v1.1.1
+        * mdの色彩を変更
+        * fixで色が反映されないバグを修整
+        * cssに色彩の要素を追加
         
     """.trimIndent())
     
