@@ -29,7 +29,7 @@ class Settings(private val settings: SettingsAPI) : SettingsPage() {
         })
     }
     /*companion object {
-        fun get(): Boolean {
+        fun get(settings: SettingsAPI): Boolean {
             return settings.getBool("dev",true)
         }
     }*/
