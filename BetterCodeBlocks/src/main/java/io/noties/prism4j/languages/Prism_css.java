@@ -42,10 +42,7 @@ public abstract class Prism_css {
         pattern(compile("url\\((?:([\"'])(?:\\\\(?:\\r\\n|[\\s\\S])|(?!\\1)[^\\\\\\r\\n])*\\1|.*?)\\)", CASE_INSENSITIVE))
       ),
       token("selector", pattern(compile("[^{}\\s][^{};]*?(?=\\s*\\{)"))),
-      token(
-        "string",
-        pattern(compile("(\"|')(?:\\\\(?:\\r\\n|[\\s\\S])|(?!\\1)[^\\\\\\r\\n])*\\1"), false, true)
-      ),
+      
       token(
         "property",
         pattern(compile("[-_a-z\\xA0-\\uFFFF][-\\w\\xA0-\\uFFFF]*(?=\\s*:)", CASE_INSENSITIVE))
@@ -53,6 +50,7 @@ public abstract class Prism_css {
       token("important", pattern(compile("\\B!important\\b", CASE_INSENSITIVE))),
       token("function", pattern(compile("[-a-z0-9]+(?=\\()", CASE_INSENSITIVE))),
       token("punctuation", pattern(compile("[(){};:]"))),
+      token("string",pattern(compile("(\"|')(?:\\\\(?:\\r\\n|[\\s\\S])|(?!\\1)[^\\\\\\r\\n])*\\1"), false, true)),
       token("number", pattern(compile("[\\d%.]+")))
     );
 
