@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 
-public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
+public final class LangNode<RC extends BasicRenderContext> extends a<RC extends Plugin> {
     private final String lang;
     public static SettingsAPI settingsAPI;
 
