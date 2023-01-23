@@ -1,4 +1,4 @@
-version = "1.1.3"
+version = "1.1.4"
 
 description = "Appear Syntax highlight!!!!!!"
 
