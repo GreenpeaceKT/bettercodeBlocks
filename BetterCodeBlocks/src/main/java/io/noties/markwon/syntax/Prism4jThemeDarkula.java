@@ -16,7 +16,7 @@ public class Prism4jThemeDarkula extends Prism4jThemeBase {
         .add(-3377102, "delimiter", "boolean", "keyword", "selector", "important", "atrule")
         .add(-5654586, "operator", "punctuation", "attr-name")
         .add(-1523862, "tag", "doctype", "builtin")
-        .add(-9922629, "entity", "number", "symbol")
+        .add(0xFF1E90FF, "entity", "number", "symbol")
         .add(0xFF9876AA, "property", "constant", "variable")
         .add(0xFF00BFFF, "string", "char")
         .add(-4475848, "annotation")
