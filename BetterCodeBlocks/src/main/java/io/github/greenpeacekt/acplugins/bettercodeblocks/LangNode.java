@@ -20,12 +20,14 @@ import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 
 public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     private final String lang;
+    public static SettingsAPI settingsAPI;
 
     @SafeVarargs
     public LangNode(String lang, Node<RC>... child) {
         super(child);
         this.lang = lang;
-        
+        settingsAPI = settings;
+    settingsTab = new SettingsTab(Settings.class).withArgs(settings);
     }
 
     public void render(SpannableStringBuilder builder, RC rc) {
@@ -37,7 +39,8 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     }
 
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
-            builder./*append(lang).*/append("");
+            //builder.append(lang).
+            builder.append("");
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
     }
