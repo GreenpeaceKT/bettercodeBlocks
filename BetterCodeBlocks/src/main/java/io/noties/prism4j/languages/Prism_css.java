@@ -53,7 +53,6 @@ public abstract class Prism_css {
       token("important", pattern(compile("\\B!important\\b", CASE_INSENSITIVE))),
       token("function", pattern(compile("[-a-z0-9]+(?=\\()", CASE_INSENSITIVE))),
       token("punctuation", pattern(compile("[(){};:]"))),
-      token("csstext", pattern(compile("\\[[^\\]]*\\]"))),
       token("number", pattern(compile("[\\d%.]+")))
     );
 
