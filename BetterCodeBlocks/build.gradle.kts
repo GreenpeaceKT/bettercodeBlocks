@@ -1,4 +1,4 @@
-version = "1.1.2"
+version = "1.1.3"
 
 description = "Appear Syntax highlight!!!!!!"
 
@@ -18,7 +18,7 @@ aliucord {
         * mdの色彩を変更
         * fixで色が反映されないバグを修整
         * cssに色彩の要素を追加
-        # v1.1.2
+        # v1.1.3
         * fixで色が変更されないバグを修整
         * cssに色彩の要素を追加
         * 数字の色彩を変更
@@ -26,5 +26,5 @@ aliucord {
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
