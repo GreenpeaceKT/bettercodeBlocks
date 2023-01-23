@@ -18,8 +18,13 @@ aliucord {
         * mdの色彩を変更
         * fixで色が反映されないバグを修整
         * cssに色彩の要素を追加
+        # v1.1.2
+        * fixで色が変更されないバグを修整
+        * cssに色彩の要素を追加
+        * 数字の色彩を変更
+        * mdの色彩を変更
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
