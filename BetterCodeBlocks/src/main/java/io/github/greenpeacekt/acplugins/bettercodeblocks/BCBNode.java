@@ -21,7 +21,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             int a = builder.length();
             if (this.lang != null) {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
-                append("あ");
+                builder.append("あ");
             }
             
             builder.append(this.content);
