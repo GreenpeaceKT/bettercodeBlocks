@@ -21,7 +21,9 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             int a = builder.length();
             if (this.lang != null) {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
+                append("あ");
             }
+            
             builder.append(this.content);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
