@@ -72,6 +72,10 @@ public final class BetterCodeBlocks extends Plugin {
                 wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
                 if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
                 param.setResult(builder);
+                if (Settings.Companion.get(settings)){
+                    builder.append(lang);
+                    builder.Append("\n");
+                }
             })
         );
     }
