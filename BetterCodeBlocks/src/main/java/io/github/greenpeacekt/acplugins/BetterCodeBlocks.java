@@ -74,7 +74,7 @@ public final class BetterCodeBlocks extends Plugin {
                 param.setResult(builder);
                 if (Settings.Companion.get(settings)){
                     builder.append(lang);
-                    builder.Append("\n");
+                    builder.append("\n");
                 }
             })
         );
