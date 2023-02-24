@@ -66,16 +66,15 @@ public final class BetterCodeBlocks extends Plugin {
                 //if (!Settings.Companion.get(settings, lang)) return;
 
                 var builder = (SpannableStringBuilder) param.args[1];
+                builder.append(lang);
+                
                 int a = builder.length();
                 var rendered = render(lang, (String) param.args[3]);
                 var ctx = (Context) param.args[0];
                 wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
                 if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
                 param.setResult(builder);
-                if (Settings.Companion.get(settings)){
-                    builder.append(lang);
-                    builder.append("\n");
-                }
+                if (Settings.Companion.get(settings)){}
             })
         );
     }
