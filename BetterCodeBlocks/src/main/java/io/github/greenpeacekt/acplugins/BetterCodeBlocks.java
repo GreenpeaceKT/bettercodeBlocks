@@ -66,7 +66,7 @@ public final class BetterCodeBlocks extends Plugin {
                 if (!Settings.Companion.get(settings)) return;
 
                 var builder = (SpannableStringBuilder) param.args[1];
-                if (Settings.Companion.get(settings))
+                //if (Settings.Companion.get(settings))
                 
                 int a = builder.length();
                 var rendered = render(lang, (String) param.args[3]);
