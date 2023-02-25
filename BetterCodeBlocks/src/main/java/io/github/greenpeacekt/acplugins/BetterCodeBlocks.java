@@ -62,8 +62,8 @@ public final class BetterCodeBlocks extends Plugin {
 
         patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
-                /*
-                var lang = (String) param.args[2];
+                
+                var lang = (String) param.args[1];//2
                 if (!Settings.Companion.get(settings)) return;
 
                 var builder = (SpannableStringBuilder) param.args[1];
@@ -76,7 +76,7 @@ public final class BetterCodeBlocks extends Plugin {
                 if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
                 param.setResult(builder);
                 
-                */
+                
             })
         );
     }
