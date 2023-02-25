@@ -12,15 +12,13 @@ import com.lytefast.flexinput.R
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks
 import io.github.greenpeacekt.acplugins.bettercodeblocks.LangNode
  
-class Settings(private val settings: SettingsAPI) : SettingsPage() {
-    @SuppressLint("SetTextI18n")
-    override fun onViewBound(view: View) {
-        super.onViewBound(view)
-        setActionBarTitle("BetterCodeBlocks")
-        setPadding(0)
-
-        val context = view.context
-        val layout = linearLayout
+class Settings(private val settings: SettingsAPI) : AppBottomSheet() {
+    override fun getContentViewResId() = 0
+    
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View {
+        val context = inflater.context
+        val layout = linearLayout(context)
+        layout.setBackgroundColor(ColorCompat.getThemedColor(context, R.b.colorBackgroundPrimary))
 
         layout.addView(com.aliucord.Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
             val key = "dev"
