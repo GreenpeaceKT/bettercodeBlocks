@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
+import com.aliucord.api.SettingsAPI
 import com.aliucord.Utils
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
@@ -33,7 +34,7 @@ class Settings(private val settings: SettingsAPI) : AppBottomSheet() {
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, bundle: Bundle?): View {
         val context = inflater.context
-        val layout = linearLayout(context)
+        val layout = LinearLayout(context)
         layout.setBackgroundColor(ColorCompat.getThemedColor(context, R.b.colorBackgroundPrimary))
 
         layout.addView(Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
