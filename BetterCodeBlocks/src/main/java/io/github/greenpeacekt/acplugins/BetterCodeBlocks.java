@@ -47,6 +47,7 @@ public final class BetterCodeBlocks extends Plugin {
             var matcher = (Matcher) param.args[0];
             if (matcher == null) return;
             var lang = (String) matcher.group(1);
+            builder.append("???");
             if (Settings.Companion.get(settings))
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
         }));
