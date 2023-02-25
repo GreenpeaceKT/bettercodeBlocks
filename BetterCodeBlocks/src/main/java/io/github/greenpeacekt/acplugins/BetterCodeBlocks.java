@@ -63,7 +63,7 @@ public final class BetterCodeBlocks extends Plugin {
         }));
         
 
-        patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
+        /*patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
                 
                 var lang = (String) param.args[2];//2
@@ -80,7 +80,7 @@ public final class BetterCodeBlocks extends Plugin {
                 
                 
             })
-        );
+        );*/
     }
 
     @Override
@@ -111,6 +111,6 @@ public final class BetterCodeBlocks extends Plugin {
     }
     
     public Node<BasicRenderContext> devrenderCodeBlock(String lang, String content) {
-        return devwrapInNodes(lang, devrender(lang, content));
+        return devwrapInNodes(lang, render(lang, content));
     }
 }
