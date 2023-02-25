@@ -47,9 +47,11 @@ public final class BetterCodeBlocks extends Plugin {
             var matcher = (Matcher) param.args[0];
             if (matcher == null) return;
             var lang = (String) matcher.group(1);
-            builder.append("???");
-            if (Settings.Companion.get(settings))
+            if (Settings.Companion.get(settings)){
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
+            }else{
+                param.setResult(new ParseSpec<>(devrenderCodeBlock(lang, matcher.group(3)), param.args[2]));
+            }
         }));
 
         patcher.patch(BlockBackgroundNode.class.getDeclaredConstructor(boolean.class, Node[].class), new PreHook(param -> {
@@ -102,5 +104,13 @@ public final class BetterCodeBlocks extends Plugin {
 
     public Node<BasicRenderContext> renderCodeBlock(String lang, String content) {
         return wrapInNodes(lang, render(lang, content));
+    }
+    
+    public Node<BasicRenderContext> devwrapInNodes(String lang, CharSequence content){
+        return new BlockBackgroundNode<>(false, new DevBCBNode<>(lang, content));
+    }
+    
+    public Node<BasicRenderContext> devrenderCodeBlock(String lang, String content) {
+        return devwrapInNodes(lang, render(lang, content));
     }
 }
