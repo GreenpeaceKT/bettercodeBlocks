@@ -36,7 +36,7 @@ class Settings(private val settings: SettingsAPI) : AppBottomSheet() {
         val layout = linearLayout(context)
         layout.setBackgroundColor(ColorCompat.getThemedColor(context, R.b.colorBackgroundPrimary))
 
-        layout.addView(com.aliucord.Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
+        layout.addView(Utils.createCheckedSetting(context, CheckedSetting.ViewType.SWITCH, "Developer mode", null).apply {
             val key = "dev"
             isChecked = settings.getBool(key, false)
             setOnCheckedListener { settings.setBool(key, it) }
