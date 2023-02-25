@@ -1,16 +1,30 @@
 package io.github.greenpeacekt.acplugins.bettercodeblocks
 
-import android.annotation.SuppressLint
-import android.view.View
-import android.widget.TextView
+import android.content.Context
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.*
+import android.widget.EditText
 import android.widget.LinearLayout
-import androidx.core.content.res.ResourcesCompat
-import com.aliucord.Constants
-import com.aliucord.api.SettingsAPI
+import androidx.recyclerview.widget.DiffUtil
+import com.aliucord.Utils
+import com.aliucord.annotations.AliucordPlugin
+import com.aliucord.entities.Plugin
+import com.aliucord.patcher.*
+import com.aliucord.utils.DimenUtils
+import com.aliucord.views.TextInput
 import com.discord.app.AppBottomSheet
-import com.discord.views.CheckedSetting
+import com.discord.databinding.WidgetSettingsBinding
+import com.discord.stores.`StoreExperiments$getExperimentalAlpha$1`
 import com.discord.utilities.color.ColorCompat
+import com.discord.views.CheckedSetting
+import com.discord.widgets.settings.SettingsViewModel
+import com.discord.widgets.settings.WidgetSettings
+import com.discord.widgets.settings.developer.*
 import com.lytefast.flexinput.R
+import java.lang.reflect.Field
+
 import io.github.greenpeacekt.acplugins.BetterCodeBlocks
 import io.github.greenpeacekt.acplugins.bettercodeblocks.LangNode
  
