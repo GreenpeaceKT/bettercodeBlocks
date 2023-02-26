@@ -15,7 +15,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
         this.content = content;
     }
 
-    /*public final void render(SpannableStringBuilder builder, RC rc) {
+    public final void render(SpannableStringBuilder builder, RC rc) {
         if (builder != null) {
             Utils.ensureEndsWithNewline(builder);
             int a = builder.length();
@@ -28,5 +28,5 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
             builder.setSpan(new RelativeSizeSpan(0.85f), a, b, 33);
         }
-    }*/
+    }
 }
