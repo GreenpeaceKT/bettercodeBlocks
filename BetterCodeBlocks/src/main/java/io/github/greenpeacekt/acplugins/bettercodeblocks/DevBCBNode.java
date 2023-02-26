@@ -20,10 +20,9 @@ public final class DevBCBNode<RC extends BasicRenderContext> extends Node<RC> {
             Utils.ensureEndsWithNewline(builder);
             int a = builder.length();
             if (this.lang != null) {
-                LangNode.renderLang(builder, rc.getContext(), this.lang, a);
+                LangNode.devrenderLang(builder, rc.getContext(), this.lang, a);
             }
-            builder.append(this.lang);
-            builder.append("\n");
+            
             builder.append(this.content);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
