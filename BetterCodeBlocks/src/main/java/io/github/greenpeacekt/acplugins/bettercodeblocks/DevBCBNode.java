@@ -15,7 +15,7 @@ public final class DevBCBNode<RC extends BasicRenderContext> extends Node<RC> {
         this.content = content;
     }
 
-    public final void render(SpannableStringBuilder builder, RC rc) {
+    public final void devrender(SpannableStringBuilder builder, RC rc) {
         if (builder != null) {
             Utils.ensureEndsWithNewline(builder);
             int a = builder.length();
