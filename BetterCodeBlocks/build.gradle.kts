@@ -1,4 +1,4 @@
-version = "1.2.0"
+version = "1.2.1"
 
 description = "Appear Syntax highlight!!!!!!"
 
@@ -28,8 +28,10 @@ aliucord {
         # v1.2.0
         * デベロッパーモード実装
         * Herobrineを削除
+        # v1.2.1
+        * デベロッパーモードの不具合を修整
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
