@@ -29,7 +29,7 @@ public final class BetterCodeBlocks extends Plugin {
     public static final Prism4j prism4j = new Prism4j(grammarLocator);
 
     public BetterCodeBlocks() {
-        settingsTab = new SettingsTab(Settings.class, SettingsTab.Type.BOTTOM_SHEET).withArgs(settings);
+        settingsTab = new SettingsTab(Settings.class).withArgs(settings);
     }
 
     @Override
@@ -47,11 +47,8 @@ public final class BetterCodeBlocks extends Plugin {
             var matcher = (Matcher) param.args[0];
             if (matcher == null) return;
             var lang = (String) matcher.group(1);
-            if (!Settings.Companion.get(settings)){
+           // if (Settings.Companion.get(settings, lang))
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
-            }else{
-                param.setResult(new ParseSpec<>(devrenderCodeBlock(lang, matcher.group(3)), param.args[2]));
-            }
         }));
 
         patcher.patch(BlockBackgroundNode.class.getDeclaredConstructor(boolean.class, Node[].class), new PreHook(param -> {
@@ -65,20 +62,16 @@ public final class BetterCodeBlocks extends Plugin {
 
         patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
-                
                 var lang = (String) param.args[2];
-                if (!Settings.Companion.get(settings)) return;
+                //if (!Settings.Companion.get(settings, lang)) return;
 
                 var builder = (SpannableStringBuilder) param.args[1];
-                
                 int a = builder.length();
                 var rendered = render(lang, (String) param.args[3]);
                 var ctx = (Context) param.args[0];
                 wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
                 if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
                 param.setResult(builder);
-                
-                
             })
         );
     }
@@ -104,13 +97,5 @@ public final class BetterCodeBlocks extends Plugin {
 
     public Node<BasicRenderContext> renderCodeBlock(String lang, String content) {
         return wrapInNodes(lang, render(lang, content));
-    }
-    
-    public Node<BasicRenderContext> devwrapInNodes(String lang, CharSequence content){
-        return new BlockBackgroundNode<>(false, new DevBCBNode<>(lang, content));
-    }
-    
-    public Node<BasicRenderContext> devrenderCodeBlock(String lang, String content) {
-        return devwrapInNodes(lang, render(lang, content));
     }
 }
