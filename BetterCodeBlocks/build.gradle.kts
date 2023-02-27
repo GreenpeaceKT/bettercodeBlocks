@@ -1,6 +1,6 @@
-version = "1.2.1"
+version = "1.2.2"
 
-description = "Appear Syntax highlight!!!!!!"
+description = "コードブロックをWeblikeにします"
 
 aliucord {
 
@@ -30,8 +30,11 @@ aliucord {
         * Herobrineを削除
         # v1.2.1
         * デベロッパーモードの不具合を修整
+        # v1.2.2
+        * cssの色彩を変更
+        * 不具合を修整
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
