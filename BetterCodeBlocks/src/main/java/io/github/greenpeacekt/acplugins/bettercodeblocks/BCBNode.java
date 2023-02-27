@@ -26,7 +26,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             builder.append(this.content);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
-            builder.setSpan(new RelativeSizeSpan(1.00f), a, b, 33);
+            builder.setSpan(new RelativeSizeSpan(0.85f), a, b, 33);
         }
     }
 }

@@ -38,13 +38,13 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
     public static void renderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
             //builder.append(lang).
             //builder.append("\n");
-            builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
+            builder.setSpan(new RelativeSizeSpan(0.85f), 1, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
     }
     public static void devrenderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
             builder.append(lang);
             builder.append("\n");
-            builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
+            builder.setSpan(new RelativeSizeSpan(0.85f), 1, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
     }
 }
