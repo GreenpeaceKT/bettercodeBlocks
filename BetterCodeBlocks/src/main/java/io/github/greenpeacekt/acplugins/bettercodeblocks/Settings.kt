@@ -47,8 +47,10 @@ class Settings(private val settings: SettingsAPI) : AppBottomSheet() {
     companion object {
         fun get(settings: SettingsAPI, lang: String): Boolean {
             val realLang = GrammarLocatorImpl.realLanguageName(lang)
-            return settings.getBool("dev",true) &&
-            (BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
+            return (BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
+        }
+        fun getop(settings: SettingsAPI){
+            return settings.getBool("dev", true)
         }
     }
 }

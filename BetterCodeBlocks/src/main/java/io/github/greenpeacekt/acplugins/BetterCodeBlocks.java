@@ -47,7 +47,7 @@ public final class BetterCodeBlocks extends Plugin {
             var matcher = (Matcher) param.args[0];
             if (matcher == null) return;
             var lang = (String) matcher.group(1);
-            if (!Settings.Companion.get(settings, lang)){
+            if (!Settings.Companion.getop(settings)){
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
             }else{
                 param.setResult(new ParseSpec<>(devrenderCodeBlock(lang, matcher.group(3)), param.args[2]));
@@ -65,10 +65,8 @@ public final class BetterCodeBlocks extends Plugin {
 
         patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
-                if (!Settings.Companion.get(settings, lang)) return;
-                
                 var lang = (String) param.args[2];
-                if (!Settings.Companion.get(settings)) return;
+                if (!Settings.Companion.get(settings, lang)) return;
 
                 var builder = (SpannableStringBuilder) param.args[1];
                 
