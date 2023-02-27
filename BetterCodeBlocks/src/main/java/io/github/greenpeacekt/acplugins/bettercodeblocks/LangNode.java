@@ -42,10 +42,8 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
             Utils.fixColor(builder, ctx, a);
     }
     public static void devrenderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
-            int b = builder.length();
             builder.append(lang);
             builder.append("\n");
-            builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             Utils.fixColor(builder, ctx, a);
     }
