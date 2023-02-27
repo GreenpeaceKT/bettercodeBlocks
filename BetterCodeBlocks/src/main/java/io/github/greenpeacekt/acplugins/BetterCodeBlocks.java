@@ -29,7 +29,7 @@ public final class BetterCodeBlocks extends Plugin {
     public static final Prism4j prism4j = new Prism4j(grammarLocator);
 
     public BetterCodeBlocks() {
-        settingsTab = new SettingsTab(Settings.class).withArgs(settings);
+        settingsTab = new SettingsTab(Settings.class, SettingsTab.Type.BOTTOM_SHEET).withArgs(settings);
     }
 
     @Override
