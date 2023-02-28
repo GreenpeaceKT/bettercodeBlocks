@@ -45,11 +45,10 @@ class Settings(private val settings: SettingsAPI) : AppBottomSheet() {
       return layout
     }
     companion object {
-        /*fun get(settings: SettingsAPI, lang: String): Boolean {
-            val realLang = GrammarLocatorImpl.realLanguageName(lang)
+        fun get(settings: SettingsAPI, lang: String): Boolean {
             if (lang == null) return true
-            return getbool(realLang, true) && (BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
-        }*/
+            return (BetterCodeBlocks.grammarLocator.grammar(BetterCodeBlocks.prism4j, lang) != null)
+        }
         fun getop(settings: SettingsAPI): Boolean {
             return settings.getBool("dev", true)
         }
