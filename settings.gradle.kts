@@ -1,2 +1,2 @@
-include(":Web-likeCodeBlocks")
+include(":BetterCodeBlocks")
 rootProject.name = "plugins"
