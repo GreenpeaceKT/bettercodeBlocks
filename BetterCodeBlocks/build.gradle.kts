@@ -1,4 +1,4 @@
-version = "1.2.3"
+version = "1.2.4"
 
 description = "コードブロックをWeblikeにします"
 
@@ -35,6 +35,8 @@ aliucord {
         * 不具合を修整
         # v1.2.3
         * 不具合を修整
+        # v1.2.4
+        * fixの色彩を修整
         
     """.trimIndent())
     
