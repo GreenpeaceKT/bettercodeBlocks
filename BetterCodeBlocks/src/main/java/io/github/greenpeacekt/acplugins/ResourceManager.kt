@@ -11,6 +11,11 @@ import java.io.File
 
 object ResourceManager {
 
+    val logger = Logger("Themer")
+    val ATTR_MAPPINGS = HashMap<String, Array<String>>()
+    private val colorsByName = HashMap<String, Int>()
+    private val colorsById = HashMap<Int, Int>()
+
     internal fun putColor(name: String, color: Int) {
         val id = Utils.getResId(name, "color")
         if (id != 0) {
@@ -45,5 +50,11 @@ object ResourceManager {
     private fun setAttr(attr: String, color: Int) {
         val id = Utils.getResId(attr, "attr")
         if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
+    }
+    
+    fun clean() {
+        colorsByName.clear()
+        colorsById.clear()
+        attrs.clear()
     }
 }
