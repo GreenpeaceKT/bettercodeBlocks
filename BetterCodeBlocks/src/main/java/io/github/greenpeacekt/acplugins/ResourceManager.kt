@@ -10,13 +10,6 @@ import com.lytefast.flexinput.R
 import java.io.File
 
 object ResourceManager {
-    internal fun putRaw(name: String, file: File) {
-        val id = Utils.getResId(name, "raw")
-        if (id != 0)
-            raws[id] = file
-        else
-            logger.warn("Unrecognised raw $name")
-    }
 
     internal fun putColor(name: String, color: Int) {
         val id = Utils.getResId(name, "color")
@@ -53,5 +46,4 @@ object ResourceManager {
         val id = Utils.getResId(attr, "attr")
         if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
     }
-}
 }

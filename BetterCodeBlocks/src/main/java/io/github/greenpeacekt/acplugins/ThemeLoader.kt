@@ -16,7 +16,6 @@ import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
 object ThemeLoader {
-    val themes = ArrayList<Theme>()
     
     private fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
@@ -55,6 +54,10 @@ object ThemeLoader {
                     ResourceManager.putAttr(it, v)
                 }
             }
+        }catch(th: Throwable) {
+            logger.error("Failed to load theme ${theme.name}", th)
+            return false
         }
+        return true
     }
 }
