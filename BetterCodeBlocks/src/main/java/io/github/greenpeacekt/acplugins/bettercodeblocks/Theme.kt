@@ -51,7 +51,7 @@ object Theme{
             }
         } else v.toInt()
     }
-    
+    @JvmStatic
     fun loadTheme(theme: Theme): Boolean {
         overlayAlpha = 0
         try {
@@ -113,7 +113,7 @@ object Theme{
     
     
    
-        
+    @JvmStatic  
     fun clean(){
         colorsByName.clear()
         colorsById.clear()
