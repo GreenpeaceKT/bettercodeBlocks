@@ -55,14 +55,14 @@ object ThemeLoader{
 
             json.optJSONObject("colors")?.run {
                 if (has("brand_500"))
-                    putDrawableTint(
+                    ResourceManager.putDrawableTint(
                         "ic_nitro_rep",
                         parseColor(this, "brand_500")
                     )
                 keys().forEach {
                     val v = parseColor(this, it)
-                    putColor(it, v)
-                    putAttr(it, v)
+                    ResourceManager.putColor(it, v)
+                    ResourceManager.putAttr(it, v)
                 }
             }
 
