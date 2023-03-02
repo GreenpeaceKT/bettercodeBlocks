@@ -15,22 +15,8 @@ import java.io.FileNotFoundException
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
-import android.content.Context
-import android.graphics.Typeface
-import com.aliucord.Utils
-import com.lytefast.flexinput.R
-
-val logger = Logger("べたーこーどぶろっくｗ")
-
-private val colorsByName = HashMap<String, Int>()
-private val colorsById = HashMap<Int, Int>()
-private val drawableTints = HashMap<Int, Int>()
-private val attrs = HashMap<Int, Int>()
-
 object ThemeLoader{
-    val themes = ArrayList<String>()
-    val ATTR_MAPPINGS = HashMap<String, Array<String>>()
-    var overlayAlpha = 0
+    
     
     
     
@@ -79,46 +65,7 @@ object ThemeLoader{
         return true
     }
     
-    internal fun putAttr(name: String?, color: Int) =
-        ATTR_MAPPINGS[name]?.forEach {
-            setAttr(it, color)
-        }
-        
-    fun setAttr(attr: String, color: Int) {
-        val id = Utils.getResId(attr, "attr")
-        if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
-    }
     
-    
-    internal fun putDrawableTint(name: String, color: Int) {
-        val id = Utils.getResId(name, "drawable")
-        if (id != 0)
-            drawableTints[id] = color
-        else
-            logger.warn("Unrecognised drawable $name")
-    }
-    
-    internal fun putColor(name: String, color: Int) {
-        val id = Utils.getResId(name, "color")
-        if (id != 0) {
-            colorsById[id] = color
-            colorsByName[name] = color
-        } else {
-            when (name) {
-                "statusbar", "input_background", "active_channel", "blocked_bg" -> colorsByName[name] = color
-                else -> logger.warn("Unrecognised colour $name")
-            }
-        }
-    }
-    
-    
-   
-    @JvmStatic  
-    fun clean(){
-        colorsByName.clear()
-        colorsById.clear()
-        drawableTints.clear()
-    }
     
 
 }
