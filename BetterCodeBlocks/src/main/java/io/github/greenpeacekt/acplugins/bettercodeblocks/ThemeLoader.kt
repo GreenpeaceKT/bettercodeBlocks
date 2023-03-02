@@ -54,10 +54,8 @@ object ThemeLoader{
             json.put("colors", colors)
         
         try {
-            val theme = Theme(json)
-            themes.add(theme)
-            if (shouldLoad && theme.isEnabled) {
-                loadTheme(theme)
+            if (shouldLoad ) {
+                loadTheme(json)
             }
         } catch (th: Throwable) {
             logger.error("Failed to load theme from JSON", th)
