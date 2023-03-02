@@ -61,20 +61,20 @@ object ThemeLoader{
             logger.error("Failed to load theme from JSON", th)
         }
 
-        themes.sortBy { it.name }
     }
     
     
-    fun loadTheme(): Boolean {
+    fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
         try {
             json.optJSONObject("colors")?.run {
-            if (has("brand_500"))
+            optString("brand_500")?.let {
                 ResourceManager.putDrawableTint(
                     "ic_nitro_rep",
-                    parseColor(this, "brand_500")
-                    )
-            keys().forEach {
+                    parseColor(this, it)
+                )
+            }
+            keySet().forEach {
                 val v = parseColor(this, it)
                 ResourceManager.putColor(it, v)
                 ResourceManager.putAttr(it, v)
