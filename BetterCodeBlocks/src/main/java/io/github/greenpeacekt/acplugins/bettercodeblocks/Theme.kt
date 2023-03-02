@@ -32,10 +32,7 @@ object Theme{
     val ATTR_MAPPINGS = HashMap<String, Array<String>>()
     var overlayAlpha = 0
     
-    private fun setAttr(attr: String, color: Int) {
-        val id = Utils.getResId(attr, "attr")
-        if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
-    }
+    
     
     
     private fun parseColor(json: JSONObject, key: String): Int {
@@ -82,6 +79,15 @@ object Theme{
         return true
     }
     
+    internal fun putAttr(name: String?, color: Int) =
+        ATTR_MAPPINGS[name]?.forEach {
+            setAttr(it, color)
+        }
+    private fun setAttr(attr: String, color: Int) {
+        val id = Utils.getResId(attr, "attr")
+        if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
+    }
+    
     
     internal fun putDrawableTint(name: String, color: Int) {
         val id = Utils.getResId(name, "drawable")
@@ -104,10 +110,6 @@ object Theme{
         }
     }
     
-    internal fun putAttr(name: String?, color: Int) =
-        ATTR_MAPPINGS[name]?.forEach {
-            setAttr(it, color)
-        }
     
    
         
