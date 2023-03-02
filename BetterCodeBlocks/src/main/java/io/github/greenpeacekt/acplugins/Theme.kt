@@ -24,7 +24,7 @@ object Theme{
     fun getColorForName(name: String) = colorsByName[name]
     fun getColorForId(id: Int) = colorsById[id]
     
-    internal fun putColor(name: String, color: Int) {
+    fun putColor(name: String, color: Int) {
         val id = Utils.getResId(name, "color")
         if (id != 0) {
             colorsById[id] = color
