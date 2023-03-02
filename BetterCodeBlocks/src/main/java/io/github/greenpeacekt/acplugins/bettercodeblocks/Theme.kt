@@ -51,11 +51,8 @@ object Theme{
         overlayAlpha = 0
         try {
 
-            val json = JSONObject( {
-                 "colors" : {
-                 "primary_630" : -16777216
-                 }
-            })
+            val json = JSONObject()
+            json.put("colors",json.put("primary_630", -16777216))
 
             json.optJSONObject("colors")?.run {
                 if (has("brand_500"))
