@@ -54,9 +54,9 @@ object Theme{
             if (!theme.convertIfLegacy())
                 theme.update()
 
-            val json = {
-                 "colors": {
-                 "primary_630": -16777216
+            val json = json {
+                 "colors" to json {
+                 "primary_630" to -16777216
                  }
             }
 
