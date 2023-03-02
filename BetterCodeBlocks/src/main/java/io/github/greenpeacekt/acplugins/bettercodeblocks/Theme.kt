@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.core.graphics.ColorUtils
 import com.aliucord.Utils
+import com.aliucord.utils.ReflectUtils
 import com.lytefast.flexinput.R
 import java.io.File
 
@@ -35,5 +36,27 @@ object Theme{
                 "statusbar", "input_background", "active_channel", "blocked_bg" -> colorsByName[name] = color
             }
         }
+    }
+    
+    fun parseColor(json: JSONObject, key: String): Int {
+        val v = json.getString(key)
+        return if (v.startsWith("system_")) {
+            if (Build.VERSION.SDK_INT < 31)
+                throw UnsupportedOperationException("system_ colours are only supported on Android 12.")
+
+            try {
+                ContextCompat.getColor(
+                    Utils.appContext,
+                    ReflectUtils.getField(android.R.color::class.java, null, v) as Int
+                )
+            } catch (th: Throwable) {
+                throw IllegalArgumentException("No such color: $v")
+            }
+        } else v.toInt()
+    }
+    
+    fun loadtheme(){
+        val v = parseColor("primary_630")
+        putColor("primary_630", v)
     }
 }
