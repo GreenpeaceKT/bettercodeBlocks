@@ -35,7 +35,7 @@ public final class BetterCodeBlocks extends Plugin {
     @Override
     public void start(Context context) throws Throwable {
         
-        putColor("primary_630", -16777216);
+        Theme.putColor("primary_630", -16777216);
         
         highlight = Prism4jSyntaxHighlight.create(prism4j, new Prism4jThemeDarkula());
 
