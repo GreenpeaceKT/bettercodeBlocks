@@ -35,7 +35,7 @@ object Theme{
     
     
     
-    private fun parseColor(json: JSONObject, key: String): Int {
+    fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
         return if (v.startsWith("system_")) {
             if (Build.VERSION.SDK_INT < 31)
@@ -52,7 +52,7 @@ object Theme{
         } else v.toInt()
     }
     
-    private fun loadTheme(theme: Theme): Boolean {
+    fun loadTheme(theme: Theme): Boolean {
         overlayAlpha = 0
         try {
 
@@ -83,7 +83,8 @@ object Theme{
         ATTR_MAPPINGS[name]?.forEach {
             setAttr(it, color)
         }
-    private fun setAttr(attr: String, color: Int) {
+        
+    fun setAttr(attr: String, color: Int) {
         val id = Utils.getResId(attr, "attr")
         if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
     }
