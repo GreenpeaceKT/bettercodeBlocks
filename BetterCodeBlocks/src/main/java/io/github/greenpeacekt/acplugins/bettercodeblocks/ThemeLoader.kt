@@ -28,7 +28,7 @@ private val drawableTints = HashMap<Int, Int>()
 private val attrs = HashMap<Int, Int>()
 
 object ThemeLoader{
-    val themes = ArrayList<Theme>()
+    val themes = ArrayList<String>()
     val ATTR_MAPPINGS = HashMap<String, Array<String>>()
     var overlayAlpha = 0
     
