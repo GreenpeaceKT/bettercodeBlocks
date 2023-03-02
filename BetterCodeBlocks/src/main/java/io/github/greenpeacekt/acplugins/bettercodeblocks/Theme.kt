@@ -1,4 +1,4 @@
-package io.github.greenpeacekt.acplugins
+package io.github.greenpeacekt.acplugins.bettercodeblocks
 
 import android.content.Context
 import android.graphics.Typeface
