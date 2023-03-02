@@ -44,7 +44,7 @@ object Theme{
     }
     
     fun loadtheme(){
-        val v = parseColor("primary_630")
+        val v = parseColor("primary_630", "primary_630")
         putColor("primary_630", v)
     }
 }
