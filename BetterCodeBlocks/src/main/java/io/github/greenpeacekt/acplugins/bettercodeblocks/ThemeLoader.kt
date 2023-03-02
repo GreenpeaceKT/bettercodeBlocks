@@ -21,6 +21,8 @@ val ATTR_MAPPINGS = HashMap<String, Array<String>>()
 var overlayAlpha = 0
 
 object ThemeLoader{
+     val themes = ArrayList<Theme>()
+
     
     
     
@@ -43,26 +45,41 @@ object ThemeLoader{
         } else v.toInt()
     }
     
-    fun loadTheme(): Boolean {
-        overlayAlpha = 0
-        try {
-
-            val json = JSONObject()
+    fun loadThemes(shouldLoad: Boolean) {
+        themes.clear()
+        
+        val json = JSONObject()
             val colors = JSONObject()
             colors.put("primary_630", -16777216)
             json.put("colors", colors)
+        
+        try {
+            val theme = Theme(json)
+            themes.add(theme)
+            if (shouldLoad && theme.isEnabled) {
+                loadTheme(theme)
+            }
+        } catch (th: Throwable) {
+            logger.error("Failed to load theme from JSON", th)
+        }
 
-
+        themes.sortBy { it.name }
+    }
+    
+    
+    fun loadTheme(): Boolean {
+        overlayAlpha = 0
+        try {
             json.optJSONObject("colors")?.run {
-                if (has("brand_500"))
-                    ResourceManager.putDrawableTint(
-                        "ic_nitro_rep",
-                        parseColor(this, "brand_500")
+            if (has("brand_500"))
+                ResourceManager.putDrawableTint(
+                    "ic_nitro_rep",
+                    parseColor(this, "brand_500")
                     )
-                keys().forEach {
-                    val v = parseColor(this, it)
-                    ResourceManager.putColor(it, v)
-                    ResourceManager.putAttr(it, v)
+            keys().forEach {
+                val v = parseColor(this, it)
+                ResourceManager.putColor(it, v)
+                ResourceManager.putAttr(it, v)
                 }
             }
 
