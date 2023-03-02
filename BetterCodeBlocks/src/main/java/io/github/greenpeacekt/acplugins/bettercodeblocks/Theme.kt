@@ -25,7 +25,7 @@ object Theme{
     fun getColorForName(name: String) = colorsByName[name]
     fun getColorForId(id: Int) = colorsById[id]
     
-    @JvmStatic
+    
     fun putColor(name: String, color: Int) {
         val id = Utils.getResId(name, "color")
         if (id != 0) {
@@ -43,8 +43,9 @@ object Theme{
         return v.toInt()
     }
     
+    @JvmStatic
     fun loadtheme(){
-        val v = parseColor("primary_630", "primary_630")
+        val v = parseColor("primary_630", -16777216)
         putColor("primary_630", v)
     }
 }
