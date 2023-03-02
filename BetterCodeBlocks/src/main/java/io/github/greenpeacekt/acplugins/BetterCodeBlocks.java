@@ -35,7 +35,7 @@ public final class BetterCodeBlocks extends Plugin {
     @Override
     public void start(Context context) throws Throwable {
         
-        ThemeLoader.loadTheme(true);
+        ThemeLoader.loadTheme(Theme);
         
         highlight = Prism4jSyntaxHighlight.create(prism4j, new Prism4jThemeDarkula());
 
@@ -88,7 +88,7 @@ public final class BetterCodeBlocks extends Plugin {
     @Override
     public void stop(Context context) {
         patcher.unpatchAll();
-        Theme.themes.clear();
+        Theme.clear();
     }
     
     /*public static Boolean Devop(){
