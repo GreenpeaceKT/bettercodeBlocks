@@ -26,8 +26,6 @@ object ThemeLoader{
     
     
     
-    
-    
     fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
         return if (v.startsWith("system_")) {
@@ -74,7 +72,7 @@ object ThemeLoader{
                     parseColor(this, it)
                 )
             }
-            keySet().forEach {
+            keys().forEach {
                 val v = parseColor(this, it)
                 ResourceManager.putColor(it, v)
                 ResourceManager.putAttr(it, v)
