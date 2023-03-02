@@ -38,21 +38,9 @@ object Theme{
         }
     }
     
-    fun parseColor(json: JSONObject, key: String): Int {
-        val v = json.getString(key)
-        return if (v.startsWith("system_")) {
-            if (Build.VERSION.SDK_INT < 31)
-                throw UnsupportedOperationException("system_ colours are only supported on Android 12.")
-
-            try {
-                ContextCompat.getColor(
-                    Utils.appContext,
-                    ReflectUtils.getField(android.R.color::class.java, null, v) as Int
-                )
-            } catch (th: Throwable) {
-                throw IllegalArgumentException("No such color: $v")
-            }
-        } else v.toInt()
+    fun parseColor(json: String, key: String): Int {
+        val v = key
+        return v.toInt()
     }
     
     fun loadtheme(){
