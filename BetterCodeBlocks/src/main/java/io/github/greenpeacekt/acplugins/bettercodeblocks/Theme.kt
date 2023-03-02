@@ -18,7 +18,7 @@ private val drawableTints = HashMap<Int, Int>()
 private val attrs = HashMap<Int, Int>()
 private val raws = HashMap<Int, File>()
 
-object Theme{
+class Theme{
     
     fun getNameByColor(color: Int) = colorToName[color]
     fun getColorForName(name: String) = colorsByName[name]
