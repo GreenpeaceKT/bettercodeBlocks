@@ -17,7 +17,7 @@ import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 
 import java.util.regex.Matcher;
 
-import io.github.greenpeacekt.acplugins.Theme
+import io.github.greenpeacekt.acplugins.Theme;
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 import io.noties.markwon.syntax.Prism4jSyntaxHighlight;
 import io.noties.markwon.syntax.Prism4jThemeDarkula;
