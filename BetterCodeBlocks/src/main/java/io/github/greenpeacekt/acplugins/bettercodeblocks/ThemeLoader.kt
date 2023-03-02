@@ -52,7 +52,7 @@ object ThemeLoader{
         } else v.toInt()
     }
     @JvmStatic
-    fun loadTheme(theme: Theme): Boolean {
+    fun loadTheme(): Boolean {
         overlayAlpha = 0
         try {
 
