@@ -18,13 +18,14 @@ private val drawableTints = HashMap<Int, Int>()
 private val attrs = HashMap<Int, Int>()
 private val raws = HashMap<Int, File>()
 
-class Theme{
+object Theme{
     
     fun getNameByColor(color: Int) = colorToName[color]
     fun getColorForName(name: String) = colorsByName[name]
     fun getColorForId(id: Int) = colorsById[id]
     
-    internal fun putColor(name: String, color: Int) {
+    @JvmStatic
+    fun putColor(name: String, color: Int) {
         val id = Utils.getResId(name, "color")
         if (id != 0) {
             colorsById[id] = color
