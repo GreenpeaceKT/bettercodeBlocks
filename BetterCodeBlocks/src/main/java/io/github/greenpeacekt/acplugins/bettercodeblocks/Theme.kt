@@ -20,14 +20,22 @@ import android.graphics.Typeface
 import com.aliucord.Utils
 import com.lytefast.flexinput.R
 
+val logger = Logger("べたーこーどぶろっくｗ")
+
 private val colorsByName = HashMap<String, Int>()
 private val colorsById = HashMap<Int, Int>()
 private val drawableTints = HashMap<Int, Int>()
+private val attrs = HashMap<Int, Int>()
 
 object Theme{
     val themes = ArrayList<Theme>()
-    
+    val ATTR_MAPPINGS = HashMap<String, Array<String>>()
     var overlayAlpha = 0
+    
+    private fun setAttr(attr: String, color: Int) {
+        val id = Utils.getResId(attr, "attr")
+        if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
+    }
     
     
     private fun parseColor(json: JSONObject, key: String): Int {
@@ -68,7 +76,7 @@ object Theme{
             }
 
         } catch (th: Throwable) {
-            logger.error("Failed to load theme ${theme.name}", th)
+            logger.error("ああああえええらー", th)
             return false
         }
         return true
@@ -100,6 +108,8 @@ object Theme{
         ATTR_MAPPINGS[name]?.forEach {
             setAttr(it, color)
         }
+    
+   
         
     fun clean(){
         colorsByName.clear()
