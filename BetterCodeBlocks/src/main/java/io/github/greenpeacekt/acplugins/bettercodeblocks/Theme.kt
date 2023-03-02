@@ -15,4 +15,8 @@ class Theme(
     val file: File
 ) {
     var name: String
+    
+    init{
+        name = "bcb"
+    }
 }
