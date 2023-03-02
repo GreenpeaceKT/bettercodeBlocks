@@ -38,14 +38,14 @@ object Theme{
         }
     }
     
-    fun parseColor(json: String, key: String): Int {
+    fun parseColor(, key: String): Int {
         val v = key
         return v.toInt()
     }
     
     @JvmStatic
     fun loadtheme(){
-        val v = parseColor("primary_630", -16777216)
+        val v = parseColor(-16777216)
         putColor("primary_630", v)
     }
 }
