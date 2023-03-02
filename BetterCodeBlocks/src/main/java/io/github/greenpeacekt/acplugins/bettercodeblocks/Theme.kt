@@ -29,7 +29,6 @@ object Theme{
     
     var overlayAlpha = 0
     
-
     
     private fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
@@ -51,14 +50,12 @@ object Theme{
     private fun loadTheme(theme: Theme): Boolean {
         overlayAlpha = 0
         try {
-            if (!theme.convertIfLegacy())
-                theme.update()
 
-            val json = json {
-                 "colors" to json {
-                 "primary_630" to -16777216
+            val json = JSONObject( {
+                 "colors" : {
+                 "primary_630" : -16777216
                  }
-            }
+            })
 
             json.optJSONObject("colors")?.run {
                 if (has("brand_500"))
@@ -112,5 +109,6 @@ object Theme{
         colorsById.clear()
         drawableTints.clear()
     }
+    
 
 }
