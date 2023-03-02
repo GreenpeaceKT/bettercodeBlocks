@@ -88,7 +88,7 @@ public final class BetterCodeBlocks extends Plugin {
     @Override
     public void stop(Context context) {
         patcher.unpatchAll();
-        Theme.clear();
+        ThemeLoader.clear();
     }
     
     /*public static Boolean Devop(){
