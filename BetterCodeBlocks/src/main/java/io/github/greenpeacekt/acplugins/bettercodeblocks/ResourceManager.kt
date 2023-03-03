@@ -91,11 +91,11 @@ object ResourceManager {
             logger.warn("Unrecognised drawable $name")
     }
 
-    internal fun putAttr(name: String?, color: Int) {
+    internal fun putAttr(name: String?, color: Int) =
         ATTR_MAPPINGS[name]?.forEach {
             setAttr(it, color)
         }
-    }
+    
     
     internal fun putAttrs(attrs: Array<String>, color: Int) {
         attrs.forEach {

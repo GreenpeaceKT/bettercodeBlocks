@@ -26,7 +26,7 @@ object ThemeLoader{
     
     
     
-    fun parseColor(json: JSONObject, key: String): Int {
+    private fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
         return if (v.startsWith("system_")) {
             if (Build.VERSION.SDK_INT < 31)
@@ -62,7 +62,7 @@ object ThemeLoader{
     }
     
     
-    fun loadTheme(json: JSONObject): Boolean {
+    private fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
         try {
             json.optJSONObject("colors")?.run {
