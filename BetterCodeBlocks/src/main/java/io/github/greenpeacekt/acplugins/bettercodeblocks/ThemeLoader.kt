@@ -62,7 +62,7 @@ object ThemeLoader{
     }
     
     
-    private fun loadTheme(json: JSONObject): Boolean {
+    private static fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
         try {
             json.optJSONObject("colors")?.run {
