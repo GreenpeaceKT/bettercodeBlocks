@@ -69,9 +69,9 @@ public final class BetterCodeBlocks extends Plugin {
         patcher.patch(ColorDrawable.class.java.getDeclaredMethod("setColor", Int.class.javaPrimitiveType),
             new PreHook ( param ->{
                 var color = param.args[0];
-                ResourceManager.INSTANCE.getColorReplacement(color)?.let {
-                param.args[0] = it;
-            }
+                var a = ResourceManager.INSTANCE.getColorReplacement(color)
+                param.args[0] = a;
+            
             // Discord has blocked message colours HARDCODED, so this is the only way to theme it :husk:
             // I HATE DISCORD
             
