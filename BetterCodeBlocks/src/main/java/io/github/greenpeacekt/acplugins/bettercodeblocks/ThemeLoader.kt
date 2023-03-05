@@ -26,7 +26,7 @@ object ThemeLoader{
     
     
     
-    private fun parseColor(json: JSONObject, key: String): Int {
+    protected fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
         return if (v.startsWith("system_")) {
             if (Build.VERSION.SDK_INT < 31)
@@ -62,22 +62,19 @@ object ThemeLoader{
     }
     
     
-    private  fun loadTheme(json: JSONObject): Boolean {
+    protected  fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
-        try {
-            json.optJSONObject("colors")?.run {
-            optString("brand_500")?.let {
+            if (has("brand_500"))
                 ResourceManager.putDrawableTint(
                     "ic_nitro_rep",
-                    parseColor(this, it)
+                    parseColor(this, "brand_500")
                 )
-            }
             keys().forEach {
                 val v = parseColor(json, "primary_630")
                 ResourceManager.putColor("primary_630", v)
                 ResourceManager.putAttr("primary_630", v)
                 }
-            }
+            
 
         } catch (th: Throwable) {
             logger.error("ああああえええらー", th)
