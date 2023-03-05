@@ -26,7 +26,7 @@ object ThemeLoader{
     
     
     
-    protected fun parseColor(json: JSONObject, key: String): Int {
+    public fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
         return if (v.startsWith("system_")) {
             if (Build.VERSION.SDK_INT < 31)
@@ -62,8 +62,9 @@ object ThemeLoader{
     }
     
     
-    protected  fun loadTheme(json: JSONObject): Boolean {
+    public  fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
+        try{
             if (has("brand_500"))
                 ResourceManager.putDrawableTint(
                     "ic_nitro_rep",
