@@ -33,6 +33,7 @@ public final class BetterCodeBlocks extends Plugin {
         settingsTab = new SettingsTab(Settings.class, SettingsTab.Type.BOTTOM_SHEET).withArgs(settings);
     }
 
+
     @Override
     public void start(Context context) throws Throwable {
         ResourceManager.INSTANCE.init(context);
