@@ -35,6 +35,10 @@ object ResourceManager {
     fun getFontForId(id: Int) = fonts[id]
     fun getRawForId(id: Int) = raws[id]
     fun getDefaultFont() = getFontForId(-1)
+    
+    fun getColorReplacement(color: Int) = getNameByColor(color)?.let {
+        getColorForName(it)
+    }
 
     fun init(ctx: Context) {
         R.c::class.java.declaredFields.forEach {
