@@ -68,7 +68,7 @@ public final class BetterCodeBlocks extends Plugin {
         
         patcher.patch(ColorDrawable.class.java.getDeclaredMethod("setColor", Int.class.javaPrimitiveType),
             new PreHook ( param ->{
-                var color = param.args[0] as Int;
+                var color = param.args[0];
                 ResourceManager.INSTANCE.getColorReplacement(color)?.let {
                 param.args[0] = it;
             }
