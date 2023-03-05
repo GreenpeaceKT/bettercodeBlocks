@@ -36,18 +36,20 @@ import java.io.*
 import java.net.URLDecoder
 import java.util.regex.Pattern
 
-fun addPatches(patcher: PatcherAPI) {
-    patcher.run {
-        themeAttributes()
-    }
-}
-
-private fun PatcherAPI.themeAttributes() {
-    patch(ColorCompat::class.java.getDeclaredMethod("getThemedColor", Context::class.java, Int::class.javaPrimitiveType),
-        PreHook { cf ->
-            ResourceManager.getAttrForId(cf.args[1] as Int)?.let {
-                cf.result = it
-            }
+object Patches{
+    fun addPatches(patcher: PatcherAPI) {
+        patcher.run {
+            themeAttributes()
         }
-    )
+    }
+
+    private fun PatcherAPI.themeAttributes() {
+        patch(ColorCompat::class.java.getDeclaredMethod("getThemedColor", Context::class.java, Int::class.javaPrimitiveType),
+            PreHook { cf ->
+                ResourceManager.getAttrForId(cf.args[1] as Int)?.let {
+                    cf.result = it
+                }
+            }
+        )
+    }
 }
