@@ -2,7 +2,7 @@ package io.github.greenpeacekt.acplugins;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-
+import android.graphics.drawable.ColorDrawable.*;
 import com.aliucord.Main;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.entities.Plugin;
@@ -15,6 +15,7 @@ import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 
+import java.util.*;
 import java.util.regex.Matcher;
 
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
@@ -66,7 +67,7 @@ public final class BetterCodeBlocks extends Plugin {
             }
         }));
         
-        patcher.patch(ColorDrawable.class.java.getDeclaredMethod("setColor", Int.class.javaPrimitiveType),
+        patcher.patch(ColorDrawable::class.java.getDeclaredMethod("setColor", Int::class.javaPrimitiveType),
             new PreHook ( param ->{
                 var color = param.args[0];
                 var a = ResourceManager.INSTANCE.getColorReplacement(color);
