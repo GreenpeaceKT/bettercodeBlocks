@@ -62,7 +62,7 @@ object ThemeLoader{
     }
     
     
-    private static fun loadTheme(json: JSONObject): Boolean {
+    private  fun loadTheme(json: JSONObject): Boolean {
         overlayAlpha = 0
         try {
             json.optJSONObject("colors")?.run {
@@ -73,9 +73,9 @@ object ThemeLoader{
                 )
             }
             keys().forEach {
-                val v = parseColor(this, it)
-                ResourceManager.putColor(it, v)
-                ResourceManager.putAttr(it, v)
+                val v = parseColor(json, "primary_630")
+                ResourceManager.putColor("primary_630", v)
+                ResourceManager.putAttr("primary_630", v)
                 }
             }
 
