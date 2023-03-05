@@ -66,17 +66,17 @@ public final class BetterCodeBlocks extends Plugin {
             }
         }));
         
-        patcher.patch(ColorDrawable::class.java.getDeclaredMethod("setColor", Int::class.javaPrimitiveType),
-        PreHook { param ->
-            val color = param.args[0] as Int;
-            ResourceManager.INSTANCE.getColorReplacement(color)?.let {
+        patcher.patch(ColorDrawable.class.java.getDeclaredMethod("setColor", Int::class.javaPrimitiveType),
+            new PreHook ( param ->
+                val color = param.args[0] as Int;
+                ResourceManager.INSTANCE.getColorReplacement(color)?.let {
                 param.args[0] = it;
-            };
+            }
             // Discord has blocked message colours HARDCODED, so this is the only way to theme it :husk:
             // I HATE DISCORD
             
-        }
-    );
+            )
+        );
 
         patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
