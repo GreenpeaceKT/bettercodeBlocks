@@ -67,7 +67,7 @@ public final class BetterCodeBlocks extends Plugin {
             }
         }));
         
-        patcher.patch(ColorDrawable::class.java.getDeclaredMethod("setColor", Int::class.javaPrimitiveType),
+        /*patcher.patch(ColorDrawable::class.java.getDeclaredMethod("setColor", Int::class.javaPrimitiveType),
             new PreHook ( param ->{
                 var color = param.args[0];
                 var a = ResourceManager.INSTANCE.getColorReplacement(color);
@@ -77,7 +77,7 @@ public final class BetterCodeBlocks extends Plugin {
             // I HATE DISCORD
             
             })
-        );
+        );*/
 
         patcher.patch(MDUtils.class.getDeclaredMethod("renderCodeBlock", Context.class, SpannableStringBuilder.class, String.class, String.class),
             new PreHook(param -> {
