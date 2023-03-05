@@ -89,7 +89,7 @@ public final class BetterCodeBlocks extends Plugin {
     public void stop(Context context) {
         patcher.unpatchAll();
         ResourceManager.INSTANCE.clean();
-        ThemeLoader.INSTANCE.themes.clear();
+        ThemeLoader.INSTANCE.themes.INSTANCE.clear();
     }
     
     /*public static Boolean Devop(){
