@@ -62,21 +62,12 @@ object ThemeLoader{
     }
     
     
-    public  fun loadTheme(json: JSONObject): Boolean {
+    public  fun loadTheme(): Boolean {
         overlayAlpha = 0
         try{
-            if (has("brand_500"))
-                ResourceManager.putDrawableTint(
-                    "ic_nitro_rep",
-                    parseColor(this, "brand_500")
-                )
-            keys().forEach {
-                val v = parseColor(json, "primary_630")
-                ResourceManager.putColor("primary_630", v)
-                ResourceManager.putAttr("primary_630", v)
-                }
-            
-
+                ResourceManager.putColor("primary_630", -16777216)
+                ResourceManager.putAttr("primary_630", -16777216)
+                
         } catch (th: Throwable) {
             logger.error("ああああえええらー", th)
             return false
