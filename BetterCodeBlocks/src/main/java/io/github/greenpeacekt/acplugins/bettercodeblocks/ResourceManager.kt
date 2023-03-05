@@ -44,8 +44,8 @@ object ResourceManager {
         R.c::class.java.declaredFields.forEach {
         val color = ctx.getColor(it.getInt(null))
         if (color != 0) colorToName[color] = it.name
+        }
     }
-}
 
     fun clean() {
         fonts.clear()
