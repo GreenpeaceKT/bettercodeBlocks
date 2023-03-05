@@ -37,7 +37,7 @@ public final class BetterCodeBlocks extends Plugin {
     public void start(Context context) throws Throwable {
         ResourceManager.INSTANCE.init(context);
         ThemeLoader.INSTANCE.loadTheme();
-        
+        Patcher.INSTANCE.addPatches();
         highlight = Prism4jSyntaxHighlight.create(prism4j, new Prism4jThemeDarkula());
 
         patcher.patch(b.a.t.a.a.class, "parse", new Class<?>[]{ Matcher.class, Parser.class, Object.class }, new PreHook(param -> {
