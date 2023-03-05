@@ -43,7 +43,7 @@ object ThemeLoader{
         } else v.toInt()
     }
     
-    fun loadThemes(shouldLoad: Boolean) {
+    /*fun loadThemes(shouldLoad: Boolean) {
         themes.clear()
         
         val json = JSONObject()
@@ -59,10 +59,10 @@ object ThemeLoader{
             logger.error("Failed to load theme from JSON", th)
         }
 
-    }
+    }*/
     
     
-    public  fun loadTheme(): Boolean {
+    fun loadTheme(): Boolean {
         overlayAlpha = 0
         try{
                 ResourceManager.putColor("primary_630", -16777216)
