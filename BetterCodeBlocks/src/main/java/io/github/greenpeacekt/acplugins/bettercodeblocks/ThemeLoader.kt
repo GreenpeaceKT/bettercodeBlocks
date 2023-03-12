@@ -8,6 +8,7 @@ import android.renderscript.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import com.aliucord.*
+import com.aliucord.Utils*
 import com.aliucord.utils.ReflectUtils
 import org.json.JSONObject
 import java.io.File
