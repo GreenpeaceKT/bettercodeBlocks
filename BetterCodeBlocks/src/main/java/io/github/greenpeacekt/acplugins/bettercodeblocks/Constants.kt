@@ -5,7 +5,7 @@ import java.io.File
 import java.util.regex.Pattern
 
 var currentTheme = ""
-
+val ATTR_MAPPINGS = HashMap<String, Array<String>>()
 enum class TransparencyMode(val value: Int) {
     NONE(0),
     CHAT(1),
