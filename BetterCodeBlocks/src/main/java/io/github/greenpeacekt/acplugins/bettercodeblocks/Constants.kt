@@ -4,6 +4,8 @@ import com.aliucord.Constants
 import java.io.File
 import java.util.regex.Pattern
 
+var currentTheme = ""
+
 fun initAttrMappings() {
     ATTR_MAPPINGS.clear()
     val map = mapOf(
