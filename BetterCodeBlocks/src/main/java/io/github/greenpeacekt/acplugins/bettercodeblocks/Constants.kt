@@ -1,3 +1,5 @@
+@file:JvmName("Utils")
+@file:JvmMultifileClass
 package io.github.greenpeacekt.acplugins.bettercodeblocks
 
 import com.aliucord.Constants
