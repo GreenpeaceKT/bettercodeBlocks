@@ -10,9 +10,6 @@ import com.lytefast.flexinput.R
 import java.io.File
 
 
-val ATTR_MAPPINGS = HashMap<String, Array<String>>()
-var overlayAlpha = 0
-
 private var colorToName = HashMap<Int, String>()
 
 private val fonts = HashMap<Int, Typeface>()
