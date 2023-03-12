@@ -65,7 +65,7 @@ object ThemeLoader {
 
 
         } catch (th: Throwable) {
-            logger.error("Failed to load theme ", th)
+            //logger.error("Failed to load theme ", th)
             return false
         }
         return true

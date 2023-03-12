@@ -79,7 +79,7 @@ object ResourceManager {
         } else {
             when (name) {
                 "statusbar", "input_background", "active_channel", "blocked_bg" -> colorsByName[name] = color
-                else -> //logger.warn("Unrecognised colour $name")
+                 //logger.warn("Unrecognised colour $name")
             }
         }
     }
@@ -92,7 +92,6 @@ object ResourceManager {
         val id = Utils.getResId(name, "drawable")
         if (id != 0)
             drawableTints[id] = color
-        else
             //logger.warn("Unrecognised drawable $name")
     }
 
