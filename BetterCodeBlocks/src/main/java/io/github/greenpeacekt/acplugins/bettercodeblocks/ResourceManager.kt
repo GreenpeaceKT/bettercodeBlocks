@@ -9,6 +9,10 @@ import com.aliucord.Utils
 import com.lytefast.flexinput.R
 import java.io.File
 
+val logger = Logger("べたーこーどくろっくｗ")
+val ATTR_MAPPINGS = HashMap<String, Array<String>>()
+var overlayAlpha = 0
+
 private var colorToName = HashMap<Int, String>()
 
 private val fonts = HashMap<Int, Typeface>()
