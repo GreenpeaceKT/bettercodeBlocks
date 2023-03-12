@@ -36,7 +36,7 @@ public final class BetterCodeBlocks extends Plugin {
 
     @Override
     public void start(Context context) throws Throwable {
-        io.github.greenpeacekt.acplugins.bettercodeblocks.Utils.initAttrMappings();
+        ConstantsKt.initAttrMappings();
         ResourceManager.INSTANCE.init(context);
         ThemeLoader.INSTANCE.loadTheme();
         Patches.INSTANCE.addPatches(patcher);
