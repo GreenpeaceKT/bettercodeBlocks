@@ -8,7 +8,6 @@ import android.renderscript.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import com.aliucord.*
-import com.aliucord.utils
 import com.aliucord.utils.ReflectUtils
 import org.json.JSONObject
 import java.io.File
@@ -17,9 +16,6 @@ import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
 object ThemeLoader {
-    val logger = Logger("べたーこーどくろっくｗ")
-    val ATTR_MAPPINGS = HashMap<String, Array<String>>()
-    var overlayAlpha = 0
     val themes = ArrayList<Theme>()
 
 

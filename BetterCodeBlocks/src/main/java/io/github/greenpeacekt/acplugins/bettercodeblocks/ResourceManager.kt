@@ -9,7 +9,7 @@ import com.aliucord.Utils
 import com.lytefast.flexinput.R
 import java.io.File
 
-val logger = Logger("べたーこーどくろっくｗ")
+
 val ATTR_MAPPINGS = HashMap<String, Array<String>>()
 var overlayAlpha = 0
 
@@ -67,8 +67,8 @@ object ResourceManager {
         val id = Utils.getResId(name, "raw")
         if (id != 0)
             raws[id] = file
-        else
-            logger.warn("Unrecognised raw $name")
+        
+            //logger.warn("Unrecognised raw $name")
     }
 
     internal fun putColor(name: String, color: Int) {
@@ -79,7 +79,7 @@ object ResourceManager {
         } else {
             when (name) {
                 "statusbar", "input_background", "active_channel", "blocked_bg" -> colorsByName[name] = color
-                else -> logger.warn("Unrecognised colour $name")
+                else -> //logger.warn("Unrecognised colour $name")
             }
         }
     }
@@ -93,7 +93,7 @@ object ResourceManager {
         if (id != 0)
             drawableTints[id] = color
         else
-            logger.warn("Unrecognised drawable $name")
+            //logger.warn("Unrecognised drawable $name")
     }
 
     internal fun putAttr(name: String?, color: Int) =
@@ -113,6 +113,6 @@ object ResourceManager {
 
     private fun setAttr(attr: String, color: Int) {
         val id = Utils.getResId(attr, "attr")
-        if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
+        //if (id == 0) logger.warn("No such attribute: $attr") else attrs[id] = color
     }
 }
