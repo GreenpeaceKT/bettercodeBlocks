@@ -153,7 +153,6 @@ val SIMPLE_SOUND_NAMES = arrayOf(
 inline fun <reified T> pairOf(v: T) = v to v
 inline fun <reified T> pairOf(a: T, b: T) = Pair(a, b)
 
-val ATTR_MAPPINGS = HashMap<String, Array<String>>()
 
 fun initAttrMappings() {
     ATTR_MAPPINGS.clear()
