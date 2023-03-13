@@ -23,17 +23,12 @@ import io.noties.markwon.syntax.Prism4jSyntaxHighlight;
 import io.noties.markwon.syntax.Prism4jThemeDarkula;
 import io.noties.prism4j.Prism4j;
 
-import android.content.Context
-import android.content.res.Resources
-import android.os.Looper
-import com.aliucord.*
-import com.aliucord.annotations.AliucordPlugin
-import com.aliucord.api.SettingsAPI
-import com.aliucord.entities.Plugin
-import com.aliucord.patcher.PreHook
-import com.aliucord.utils.RxUtils.subscribe
-import com.discord.stores.StoreStream
-import rx.Subscription
+import android.content.Context;
+import android.content.res.Resources;
+import com.aliucord.*;
+import com.aliucord.utils.RxUtils.subscribe;
+import com.discord.stores.StoreStream;
+import rx.Subscription;
 
 @AliucordPlugin
 @SuppressWarnings({ "unchecked", "unused" })
