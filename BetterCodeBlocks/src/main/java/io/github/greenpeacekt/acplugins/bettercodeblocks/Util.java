@@ -10,7 +10,7 @@ import com.discord.utilities.color.ColorCompat;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public final class Utils {
+public final class Util {
     public static void ensureEndsWithNewline(SpannableStringBuilder builder) {
         if (builder.length() > 0) {
             int len = builder.length();
