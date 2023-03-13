@@ -17,7 +17,7 @@ public final class DevBCBNode<RC extends BasicRenderContext> extends Node<RC> {
 
     public final void render(SpannableStringBuilder builder, RC rc) {
         if (builder != null) {
-            Utils.ensureEndsWithNewline(builder);
+            Util.ensureEndsWithNewline(builder);
             int a = builder.length();
             if (this.lang != null) {
                 LangNode.devrenderLang(builder, rc.getContext(), this.lang, a);

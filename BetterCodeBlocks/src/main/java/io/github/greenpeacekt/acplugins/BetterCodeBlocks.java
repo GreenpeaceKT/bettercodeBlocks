@@ -96,7 +96,7 @@ public final class BetterCodeBlocks extends Plugin {
                 var rendered = render(lang, (String) param.args[3]);
                 var ctx = (Context) param.args[0];
                 wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
-                if (rendered instanceof String) Utils.fixColor(builder, ctx, a);
+                if (rendered instanceof String) Util.fixColor(builder, ctx, a);
                 param.setResult(builder);
                 
                 

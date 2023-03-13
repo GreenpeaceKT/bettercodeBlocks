@@ -29,7 +29,7 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
 
     public void render(SpannableStringBuilder builder, RC rc) {
         if (!(builder == null || this.lang == null)) {
-            Utils.ensureEndsWithNewline(builder);
+            Util.ensureEndsWithNewline(builder);
             renderLang(builder, rc.getContext(), this.lang, builder.length());
         }
         super.render(builder, rc);
@@ -39,11 +39,11 @@ public final class LangNode<RC extends BasicRenderContext> extends a<RC> {
             //builder.append(lang).
             //builder.append("\n");
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
-            Utils.fixColor(builder, ctx, a);
+            Util.fixColor(builder, ctx, a);
     }
     public static void devrenderLang(SpannableStringBuilder builder, Context ctx, String lang, int a) {
             builder.setSpan(new RelativeSizeSpan(0.85f), a, builder.length(), 33);
             builder.append(lang).append("\n");
-            Utils.fixColor(builder, ctx, a);
+            Util.fixColor(builder, ctx, a);
     }
 }
