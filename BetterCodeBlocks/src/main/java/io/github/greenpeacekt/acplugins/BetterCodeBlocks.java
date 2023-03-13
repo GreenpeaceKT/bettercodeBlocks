@@ -26,6 +26,8 @@ import io.noties.prism4j.Prism4j;
 import android.content.Context;
 import android.content.res.Resources;
 
+
+
 @AliucordPlugin
 @SuppressWarnings({ "unchecked", "unused" })
 public final class BetterCodeBlocks extends Plugin {

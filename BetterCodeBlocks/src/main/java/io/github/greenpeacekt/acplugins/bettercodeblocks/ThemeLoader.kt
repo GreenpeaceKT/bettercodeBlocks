@@ -8,7 +8,6 @@ import android.renderscript.*
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import com.aliucord.*
-import com.aliucord.Utils
 import com.aliucord.utils.ReflectUtils
 import org.json.JSONObject
 import java.io.File
@@ -16,14 +15,8 @@ import java.io.FileNotFoundException
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
-val logger = Logger("べたーこーどくろっくｗ")
-val ATTR_MAPPINGS = HashMap<String, Array<String>>()
-var overlayAlpha = 0
-
 object ThemeLoader {
     val themes = ArrayList<Theme>()
-
-
 
     private fun parseColor(json: JSONObject, key: String): Int {
         val v = json.getString(key)
@@ -42,18 +35,19 @@ object ThemeLoader {
         } else v.toInt()
     }
 
+    
+
 
     fun loadTheme(): Boolean {
         ResourceManager.overlayAlpha = 0
         try {
-            //if (!theme.convertIfLegacy())
-                //theme.update()
-
-            //val json = theme.json()
+            
             val json = JSONObject()
             val colors = JSONObject()
             colors.put("primary_630", -16777216)
             json.put("colors", colors)
+
+           
 
             json.optJSONObject("colors")?.run {
                 if (has("brand_500"))
@@ -68,6 +62,7 @@ object ThemeLoader {
                 }
             }
 
+            
 
         } catch (th: Throwable) {
             logger.error("Failed to load theme ", th)

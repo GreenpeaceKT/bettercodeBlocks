@@ -4,8 +4,6 @@ import com.aliucord.Constants
 import java.io.File
 import java.util.regex.Pattern
 
-var currentTheme = ""
-
 enum class TransparencyMode(val value: Int) {
     NONE(0),
     CHAT(1),
@@ -153,6 +151,7 @@ val SIMPLE_SOUND_NAMES = arrayOf(
 inline fun <reified T> pairOf(v: T) = v to v
 inline fun <reified T> pairOf(a: T, b: T) = Pair(a, b)
 
+val ATTR_MAPPINGS = HashMap<String, Array<String>>()
 
 fun initAttrMappings() {
     ATTR_MAPPINGS.clear()
