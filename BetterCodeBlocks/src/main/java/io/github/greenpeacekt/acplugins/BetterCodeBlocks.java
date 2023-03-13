@@ -26,7 +26,6 @@ import io.noties.prism4j.Prism4j;
 import android.content.Context;
 import android.content.res.Resources;
 import com.aliucord.*;
-import com.aliucord.utils.RxUtils.subscribe;
 import com.discord.stores.StoreStream;
 import rx.Subscription;
 
