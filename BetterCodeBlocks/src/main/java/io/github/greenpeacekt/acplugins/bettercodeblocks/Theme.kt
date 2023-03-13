@@ -12,12 +12,4 @@ import java.io.IOException
 
 class ThemeException(override val message: String) : IOException(message)
 
-class Theme(
-    val file: File
-) {
-    var name: String
-    
-    init{
-        name = "bcb"
-    }
-}
+class Theme(val file: File) 
