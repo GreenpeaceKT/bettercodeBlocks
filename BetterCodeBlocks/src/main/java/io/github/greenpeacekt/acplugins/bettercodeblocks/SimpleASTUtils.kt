@@ -10,7 +10,7 @@ object SimpleASTUtils {
 
     @JvmStatic
     fun addLanguages(langMap: MutableMap<String, Any?>) {
-        val createGenericCodeRules = Utils.getCreateGenericCodeRules().apply { isAccessible = true }
+        val createGenericCodeRules = Util.getCreateGenericCodeRules().apply { isAccessible = true }
         val codeRulesUtils = b.a.t.a.e.f
 
         val commentStyleProvider = StyleNode.a<Any> { listOf(ForegroundColorSpan((0xFF808080).toInt())) }
