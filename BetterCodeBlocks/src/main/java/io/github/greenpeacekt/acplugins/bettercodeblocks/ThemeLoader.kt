@@ -15,6 +15,8 @@ import java.io.FileNotFoundException
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 
+val logger = Logger("BetterCodeBlocks")
+
 object ThemeLoader {
     val themes = ArrayList<Theme>()
 

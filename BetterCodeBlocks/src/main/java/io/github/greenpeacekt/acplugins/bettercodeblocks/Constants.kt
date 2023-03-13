@@ -4,6 +4,8 @@ import com.aliucord.Constants
 import java.io.File
 import java.util.regex.Pattern
 
+var currentTheme = ""
+
 enum class TransparencyMode(val value: Int) {
     NONE(0),
     CHAT(1),
