@@ -25,9 +25,6 @@ import io.noties.prism4j.Prism4j;
 
 import android.content.Context;
 import android.content.res.Resources;
-import com.aliucord.*;
-import com.discord.stores.StoreStream;
-import rx.Subscription;
 
 @AliucordPlugin
 @SuppressWarnings({ "unchecked", "unused" })
