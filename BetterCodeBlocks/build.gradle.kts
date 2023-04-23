@@ -1,4 +1,4 @@
-version = "1.2.4"
+version = "1.2.5"
 
 description = "コードブロックをWeblikeにします"
 
@@ -40,5 +40,5 @@ aliucord {
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
