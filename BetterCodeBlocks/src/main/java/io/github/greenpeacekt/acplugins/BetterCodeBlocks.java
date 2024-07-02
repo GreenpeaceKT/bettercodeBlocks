@@ -14,6 +14,8 @@ import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
+import com.discord.widgets.chat.MessageContent;
+import com.discord.widgets.chat.MessageManager;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -99,12 +101,8 @@ public final class BetterCodeBlocks extends Plugin {
                 
             })
         );
-        
-        Class<?> messageClass = com.discord.api.message.Message.class;
-        Method method = messageClass.getDeclaredMethod("i");
-        method.setAccessible(true);
 
-        patcher.patch(method, new PreHook(callFrame -> {
+        patcher.patch(com.discord.api.message.Message.class.getDeclaredMethod("i"), new PreHook(callFrame -> {
                     
             if (callFrame.result == null) return;
             String content = (String) callFrame.result;
