@@ -16,7 +16,7 @@ public class Prism_ansi {
     public static Prism4j.Grammar create(@NonNull Prism4j prism4j) {
         return grammar("ansi",
         token("30-m", pattern(compile("\\[0;30m.*?\\[|\\[0;30m.*", MULTILINE))),
-        token("31-m", pattern(compile("m.*$|m*?m", MULTILINE))),
+        token("31-m", pattern(compile("^[-–].*", MULTILINE))),
         token("32-m", pattern(compile("\\[0;32m.*?\\[|\\[0;32m.*", MULTILINE))),
         token("33-m", pattern(compile("\\[0;33m.*?\\[|\\[0;33m.*", MULTILINE))),
         token("34-m", pattern(compile("\\[0;34m.*?\\[|\\[0;34m.*", MULTILINE))),
