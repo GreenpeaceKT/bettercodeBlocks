@@ -105,7 +105,7 @@ public final class BetterCodeBlocks extends Plugin {
         );
 
         patcher.patch(WidgetChatListAdapterItemMessage.class.getDeclaredMethod("onConfigure", int.class, ChatListEntry.class),
-            new Prehook(param -> {
+            new Hook(param -> {
                 
                 var entry = (MessageEntry) param.args[1];
                 if (entry.getMessage().isLoading())return;
@@ -122,7 +122,7 @@ public final class BetterCodeBlocks extends Plugin {
                     String matched = matcher.group(1);
                     content = matched.replaceAll("\\[\\d+;\\d+", "");
                 }
-                entry.getMessage().getContent().setResult(content);
+                param.setResult(content);
             }
         ));
     }
