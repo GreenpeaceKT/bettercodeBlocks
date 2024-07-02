@@ -17,6 +17,7 @@ import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 
 import java.util.*;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.github.greenpeacekt.acplugins.bettercodeblocks.*;
 import io.noties.markwon.syntax.Prism4jSyntaxHighlight;
@@ -98,7 +99,29 @@ public final class BetterCodeBlocks extends Plugin {
                 
             })
         );
-    }
+        
+        Class<?> messageClass = com.discord.api.message.Message.class;
+        Method method = messageClass.getDeclaredMethod("i");
+        method.setAccessible(true);
+
+        patcher.patch(method, new PreHook(callFrame -> {
+                    
+            if (callFrame.result == null) return;
+            String content = (String) callFrame.result;
+            if (content.isEmpty()) return;
+            
+            String regex = "```ansi(.*?)```";
+        
+            Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+            Matcher matcher = pattern.matcher(content);
+            
+            StringBuffer result = new StringBuffer();
+            while (matcher.find()) {
+                String matched = matcher.group(1);
+                content = matched.replaceAll("\\[\\d+;\\d+", "");
+            }
+            callFrame.result = content;
+        }));
 
     @Override
     public void stop(Context context) {
