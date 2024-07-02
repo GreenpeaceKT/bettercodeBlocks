@@ -124,8 +124,7 @@ public final class BetterCodeBlocks extends Plugin {
                     String matched = matcher.group(1);
                     content = matched.replaceAll("\\[\\d+;\\d+m", "");
                 }
-                Logger("param").debug(param);
-                param.setResult(content);
+                param.getMessage().getContent() = content;
             }
         ));
     }
