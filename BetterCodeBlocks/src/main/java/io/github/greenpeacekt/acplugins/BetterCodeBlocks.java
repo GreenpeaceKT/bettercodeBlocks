@@ -7,6 +7,7 @@ import com.aliucord.Main;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.PreHook;
+import com.aliucord.patcher.Hook;
 import com.aliucord.utils.MDUtils;
 import com.discord.simpleast.code.CodeNode;
 import com.discord.simpleast.core.node.Node;
