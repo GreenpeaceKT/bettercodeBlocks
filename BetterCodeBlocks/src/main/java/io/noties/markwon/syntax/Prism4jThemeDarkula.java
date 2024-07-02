@@ -27,15 +27,15 @@ public class Prism4jThemeDarkula extends Prism4jThemeBase {
         .add(0xFF00FF00, "inserted")
         .add(0xFFFF0000, "deleted")
         .add(0xFF1E90FF,"md-sharp")
-        .add(0x4E5058, "30-m")
-        .add(0xDC322F, "31-m")
-        .add(0x859900, "32-m")
-        .add(0xB58900, "33-m")
-        .add(0x268BD2, "34-m")
-        .add(0xD33682, "35-m")
-        .add(0x2AA198, "36-m")
-        .add(0xFFFFFF, "37-m")
-        .add(0xB5BAC1, "38-m");
+        .add(0xFF4E5058, "30-m")
+        .add(0xFFDC322F, "31-m")
+        .add(0xFF859900, "32-m")
+        .add(0xFFB58900, "33-m")
+        .add(0xFF268BD2, "34-m")
+        .add(0xFFD33682, "35-m")
+        .add(0xFF2AA198, "36-m")
+        .add(0xFFFFFFFF, "37-m")
+        .add(0xFFB5BAC1, "38-m");
     }
 
     /* Access modifiers changed, original: protected */
