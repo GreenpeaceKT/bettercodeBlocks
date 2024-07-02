@@ -15,6 +15,7 @@ import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
+import com.discord.widgets.chat.list.entries.MessageEntry;
 import com.discord.widgets.chat.MessageContent;
 import com.discord.widgets.chat.MessageManager;
 
@@ -104,7 +105,7 @@ public final class BetterCodeBlocks extends Plugin {
         );
 
         patcher.patch(WidgetChatListAdapterItemMessage.class.getDeclaredMethod("onConfigure", int.class, ChatListEntry.class),
-            new Preook(param -> {
+            new Prehook(param -> {
                 
                 var entry = (MessageEntry) param.args[1];
                 if (entry.getMessage().isLoading())return;
