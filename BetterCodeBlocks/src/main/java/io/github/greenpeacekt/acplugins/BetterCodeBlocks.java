@@ -104,9 +104,9 @@ public final class BetterCodeBlocks extends Plugin {
         );
 
         patcher.patch(WidgetChatListAdapterItemMessage.class.getDeclaredMethod("onConfigure", int.class, ChatListEntry.class),
-            new Hook(param -> {
+            new Preook(param -> {
                 
-                var entry = (MessagEntry) param.args[1];
+                var entry = (MessageEntry) param.args[1];
                 if (entry.getMessage().isLoading())return;
                 var content = entry.getMessage().getContent();
                 if (content.isEmpty()) return;
