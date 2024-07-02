@@ -122,6 +122,7 @@ public final class BetterCodeBlocks extends Plugin {
             }
             callFrame.result = content;
         }));
+    }
 
     @Override
     public void stop(Context context) {
