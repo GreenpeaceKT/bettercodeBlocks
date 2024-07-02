@@ -107,7 +107,7 @@ public final class BetterCodeBlocks extends Plugin {
                 
                 var entry = (MessagEntry) param.args[1];
                 if (entry.getMessage().isLoading())return;
-                var content = entry.getMessage().getContent()
+                var content = entry.getMessage().getContent();
                 if (content.isEmpty()) return;
             
                 String regex = "```ansi(.*?)```";
@@ -120,7 +120,7 @@ public final class BetterCodeBlocks extends Plugin {
                     String matched = matcher.group(1);
                     content = matched.replaceAll("\\[\\d+;\\d+", "");
                 }
-                entry.getMessage().getContent()(content);
+                entry.getMessage().getContent().setResult(content);
             }
         ));
     }
