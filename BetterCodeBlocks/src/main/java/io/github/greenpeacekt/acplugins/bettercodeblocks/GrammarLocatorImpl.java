@@ -69,6 +69,8 @@ public final class GrammarLocatorImpl implements GrammarLocator {
             
             case "diff":
                 return Prism_diff.create(prism4j);
+            case "ansi":
+                return Prism_ansi.create(prism4j);
             case "fix":
                 return Prism_fix.create(prism4j);
             case "md":
