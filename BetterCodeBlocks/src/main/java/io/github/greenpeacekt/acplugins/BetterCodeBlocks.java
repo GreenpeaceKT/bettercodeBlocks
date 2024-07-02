@@ -14,6 +14,7 @@ import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
+import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.MessageContent;
 import com.discord.widgets.chat.MessageManager;
 
