@@ -40,5 +40,5 @@ aliucord {
         
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(false)
+    excludeFromUpdaterJson.set(true)
 }
