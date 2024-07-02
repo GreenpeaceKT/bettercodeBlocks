@@ -102,24 +102,27 @@ public final class BetterCodeBlocks extends Plugin {
             })
         );
 
-        patcher.patch(com.discord.api.message.Message.class.getDeclaredMethod("i"), new PreHook(callFrame -> {
-                    
-            if (callFrame.result == null) return;
-            String content = (String) callFrame.result;
-            if (content.isEmpty()) return;
+        patcher.patch(WidgetChatListAdapterItemMessage.class.getDeclaredMethod("onConfigure", int.class, ChatListEntry.class),
+            new Hook(param -> {
+                
+                var entry = (MessagEntry) param.args[1];
+                if (entry.getMessage().isLoading())return;
+                var content = entry.getMessage().getContent()
+                if (content.isEmpty()) return;
             
-            String regex = "```ansi(.*?)```";
+                String regex = "```ansi(.*?)```";
         
-            Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-            Matcher matcher = pattern.matcher(content);
+                Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+                Matcher matcher = pattern.matcher(content);
             
-            StringBuffer result = new StringBuffer();
-            while (matcher.find()) {
-                String matched = matcher.group(1);
-                content = matched.replaceAll("\\[\\d+;\\d+", "");
+                StringBuffer result = new StringBuffer();
+                while (matcher.find()) {
+                    String matched = matcher.group(1);
+                    content = matched.replaceAll("\\[\\d+;\\d+", "");
+                }
+                entry.getMessage().getContent()(content);
             }
-            callFrame.result = content;
-        }));
+        ));
     }
 
     @Override
