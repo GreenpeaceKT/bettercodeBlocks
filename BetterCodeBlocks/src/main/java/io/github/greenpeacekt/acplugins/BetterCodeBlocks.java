@@ -110,17 +110,18 @@ public final class BetterCodeBlocks extends Plugin {
             new PreHook(param -> {
                 
                 var content = (MessageContent) param.args[2];
+                var mes = content.getTextContent();
                 if (content.isEmpty()) return;
             
                 String regex = "```ansi(.*?)```";
         
                 Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-                Matcher matcher = pattern.matcher(content);
+                Matcher matcher = pattern.matcher(mes);
             
                 StringBuffer result = new StringBuffer();
                 while (matcher.find()) {
                     String matched = matcher.group(1);
-                    content = matched.replaceAll("\\[\\d+;\\d+m", "");
+                    mes = matched.replaceAll("\\[\\d+;\\d+m", "");
                 }
             }
         ));
