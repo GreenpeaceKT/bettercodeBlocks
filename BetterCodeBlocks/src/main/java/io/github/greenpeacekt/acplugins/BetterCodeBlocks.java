@@ -110,22 +110,22 @@ public final class BetterCodeBlocks extends Plugin {
 
         patcher.patch(ChatInputViewModel.class.getDeclaredMethod("sendMessage", Context.class, MessageManager.class, MessageContent.class),
             new PreHook(param -> {
-                
-                var content = (MessageContent) param.args[2];
-                var mes = content.getTextContent();
-                if (mes.isEmpty()) return;
-            
-                String regex = "```ansi(.*?)```";
-        
-                Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-                Matcher matcher = pattern.matcher(mes);
-            
-                StringBuffer result = new StringBuffer();
-                while (matcher.find()) {
-                    String matched = matcher.group(1);
-                    mes = matched.replaceAll("\\[\\d+;\\d+m", "");
-                }
                 try {
+                    var content = (MessageContent) param.args[2];
+                    var mes = content.getTextContent();
+                    if (mes.isEmpty()) return;
+                
+                    String regex = "```ansi(.*?)```";
+        
+                    Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+                    Matcher matcher = pattern.matcher(mes);
+            
+                    StringBuffer result = new StringBuffer();
+                    while (matcher.find()) {
+                        String matched = matcher.group(1);
+                        mes = matched.replaceAll("\\[\\d+;\\d+m", "");
+                    }
+                
                     ReflectUtils.setField(content, "textContent", mes);
                 } catch (Exception e) {
                     e.printStackTrace();
