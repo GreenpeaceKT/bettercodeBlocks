@@ -106,12 +106,10 @@ public final class BetterCodeBlocks extends Plugin {
             })
         );
 
-        patcher.patch(WidgetChatListAdapterItemMessage.class.getDeclaredMethod("onConfigure", int.class, ChatListEntry.class),
+        patcher.patch(ChatInputViewModel.class.getDeclaredMethod("sendMessage", Context.class, MessageManager.class, MessageContent.class),
             new PreHook(param -> {
                 
-                var entry = (MessageEntry) param.args[1];
-                if (entry.getMessage().isLoading())return;
-                var content = entry.getMessage().getContent();
+                var content = (MessageContent) param.args[2];
                 if (content.isEmpty()) return;
             
                 String regex = "```ansi(.*?)```";
