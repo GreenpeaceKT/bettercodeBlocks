@@ -18,6 +18,7 @@ import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
+import com.discord.widgets.chat.input.ChatInputViewModel
 import com.discord.widgets.chat.MessageContent;
 import com.discord.widgets.chat.MessageManager;
 
@@ -111,7 +112,7 @@ public final class BetterCodeBlocks extends Plugin {
                 
                 var content = (MessageContent) param.args[2];
                 var mes = content.getTextContent();
-                if (content.isEmpty()) return;
+                if (mes.isEmpty()) return;
             
                 String regex = "```ansi(.*?)```";
         
