@@ -9,6 +9,7 @@ import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.PreHook;
 import com.aliucord.patcher.Hook;
 import com.aliucord.utils.MDUtils;
+import com.aliucord.utils.ReflectUtils;
 import com.discord.simpleast.code.CodeNode;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.parser.ParseSpec;
@@ -124,6 +125,7 @@ public final class BetterCodeBlocks extends Plugin {
                     String matched = matcher.group(1);
                     mes = matched.replaceAll("\\[\\d+;\\d+m", "");
                 }
+                ReflectUtils.setField(content, "textContent", mes);
             }
         ));
     }

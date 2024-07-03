@@ -25,7 +25,7 @@ public class Prism4jThemeDarkula extends Prism4jThemeBase {
         .add(-14739, "function")
         .add(-13221579, "regex")
         .add(0xFF00FF00, "inserted")
-        .add(0xFFFF58AB, "deleted")
+        .add(0xFFFF3859, "deleted")
         .add(0xFF1E90FF,"md-sharp")
         .add(0xFF4E5058, "30-m")
         .add(0xFFDC322F, "31-m")
