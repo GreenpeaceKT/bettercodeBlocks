@@ -18,7 +18,7 @@ import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage;
 import com.discord.widgets.chat.list.entries.ChatListEntry;
 import com.discord.widgets.chat.list.entries.MessageEntry;
-import com.discord.widgets.chat.input.ChatInputViewModel
+import com.discord.widgets.chat.input.ChatInputViewModel;
 import com.discord.widgets.chat.MessageContent;
 import com.discord.widgets.chat.MessageManager;
 
