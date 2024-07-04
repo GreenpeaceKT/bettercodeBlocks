@@ -6,6 +6,10 @@ import android.text.style.TypefaceSpan;
 import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
     private final CharSequence content;
     private final String lang;
@@ -22,7 +26,15 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             if (this.lang != null) {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
+            if (this.lang == "ansi") {
+                Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+                Matcher matcher = pattern.matcher(this.content);
             
+                StringBuffer result = new StringBuffer();
+                    
+                String matched = matcher.group(1);
+                thi.content = matched.replaceAll("\\[\\d+;\\d+m", "");
+            }
             builder.append(this.content);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
