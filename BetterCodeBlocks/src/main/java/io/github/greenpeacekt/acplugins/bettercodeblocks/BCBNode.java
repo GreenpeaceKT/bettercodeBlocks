@@ -33,7 +33,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 StringBuffer result = new StringBuffer();
                     
                 String matched = matcher.group(1);
-                thi.content = matched.replaceAll("\\[\\d+;\\d+m", "");
+                this.content = matched.replaceAll("\\[\\d+;\\d+m", "");
             }
             builder.append(this.content);
             int b = builder.length();

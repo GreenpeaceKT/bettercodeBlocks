@@ -4,25 +4,16 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.graphics.drawable.ColorDrawable.*;
 import com.aliucord.Main;
-import com.aliucord.Logger;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.PreHook;
-import com.aliucord.patcher.Hook;
 import com.aliucord.utils.MDUtils;
-import com.aliucord.utils.ReflectUtils;
 import com.discord.simpleast.code.CodeNode;
 import com.discord.simpleast.core.node.Node;
 import com.discord.simpleast.core.parser.ParseSpec;
 import com.discord.simpleast.core.parser.Parser;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
-import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage;
-import com.discord.widgets.chat.list.entries.ChatListEntry;
-import com.discord.widgets.chat.list.entries.MessageEntry;
-import com.discord.widgets.chat.input.ChatInputViewModel;
-import com.discord.widgets.chat.MessageContent;
-import com.discord.widgets.chat.MessageManager;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -34,7 +25,6 @@ import io.noties.markwon.syntax.Prism4jThemeDarkula;
 import io.noties.prism4j.Prism4j;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 
 
@@ -109,30 +99,6 @@ public final class BetterCodeBlocks extends Plugin {
             })
         );
 
-        patcher.patch(ChatInputViewModel.class.getDeclaredMethod("sendMessage", Context.class, MessageManager.class, MessageContent.class),
-            new PreHook(param -> {
-                try {
-                    var content = (MessageContent) param.args[2];
-                    var mes = content.getTextContent();
-                    if (mes.isEmpty()) return;
-                
-                    String regex = "```ansi(.*?)```";
-        
-                    Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-                    Matcher matcher = pattern.matcher(mes);
-            
-                    StringBuffer result = new StringBuffer();
-                    
-                    String matched = matcher.group(1);
-                    mes = matched.replaceAll("\\[\\d+;\\d+m", "");
-                    
-                    matcher.appendTail(result);
-                    ReflectUtils.setField(content, "textContent", result);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } 
-            }
-        ));
     }
 
     @Override
