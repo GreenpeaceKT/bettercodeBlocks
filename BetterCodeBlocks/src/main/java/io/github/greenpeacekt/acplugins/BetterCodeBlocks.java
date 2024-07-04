@@ -122,10 +122,10 @@ public final class BetterCodeBlocks extends Plugin {
                     Matcher matcher = pattern.matcher(mes);
             
                     StringBuffer result = new StringBuffer();
-                    while (matcher.find()) {
-                        String matched = matcher.group(1);
-                        mes = matched.replaceAll("\\[\\d+;\\d+m", "");
-                    }
+                    
+                    String matched = matcher.group(1);
+                    mes = matched.replaceAll("\\[\\d+;\\d+m", "");
+                    
                     matcher.appendTail(result);
                     ReflectUtils.setField(content, "textContent", result);
                 } catch (Exception e) {
