@@ -124,7 +124,7 @@ public final class BetterCodeBlocks extends Plugin {
                     StringBuffer result = new StringBuffer();
                     while (matcher.find()) {
                         String matched = matcher.group(1);
-                        Logger.debug(mes)
+                        Logger.debug(mes);
                         mes = matched.replaceAll("\\[\\d+;\\d+m", "");
                         ReflectUtils.setField(content, "textContent", mes);
                     }
