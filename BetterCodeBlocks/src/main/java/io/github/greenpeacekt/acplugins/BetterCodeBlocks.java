@@ -127,8 +127,8 @@ public final class BetterCodeBlocks extends Plugin {
                         Logger.debug(mes);
                         mes = matched.replaceAll("\\[\\d+;\\d+m", "");
                         ReflectUtils.setField(content, "textContent", mes);
+                        Logger.debug("text");
                     }
-                
                     ReflectUtils.setField(content, "textContent", mes);
                 } catch (Exception e) {
                     e.printStackTrace();
