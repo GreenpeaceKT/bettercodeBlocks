@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.graphics.drawable.ColorDrawable.*;
 import com.aliucord.Main;
+import com.aliucord.Logger;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.entities.Plugin;
 import com.aliucord.patcher.PreHook;
@@ -123,7 +124,9 @@ public final class BetterCodeBlocks extends Plugin {
                     StringBuffer result = new StringBuffer();
                     while (matcher.find()) {
                         String matched = matcher.group(1);
+                        Logger.debug(mes)
                         mes = matched.replaceAll("\\[\\d+;\\d+m", "");
+                        ReflectUtils.setField(content, "textContent", mes);
                     }
                 
                     ReflectUtils.setField(content, "textContent", mes);
