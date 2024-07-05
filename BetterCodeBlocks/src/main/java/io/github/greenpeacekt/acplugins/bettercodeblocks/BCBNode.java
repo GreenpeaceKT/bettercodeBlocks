@@ -28,9 +28,8 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
             StringBuffer sb = new StringBuffer();
-            //builder.append(this.content);
             Pattern pattern = Pattern.compile("\\[\\d+;\\d+m");
-            Matcher matcher = pattern.matcher(builder.toString());
+            Matcher matcher = pattern.matcher(this.content);
             if (this.lang == "ansi") {
                 while(matcher.find()){
                     sb.setLength(0);
@@ -42,6 +41,8 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 sb.setLength(0);
                 matcher.appendTail(sb);
                 builder.append(sb.toString());
+            } else {
+                builder.append(this.content);
             }
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
