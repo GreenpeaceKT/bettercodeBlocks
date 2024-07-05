@@ -37,8 +37,10 @@ aliucord {
         * 不具合を修整
         # v1.2.4
         * fixの色彩を修整
-        
+        # v1.2.5
+        * 一部のansiタグに対応しました
+        * diffの赤字を見やすくしました
     """.trimIndent())
     
-    excludeFromUpdaterJson.set(true)
+    excludeFromUpdaterJson.set(false)
 }
