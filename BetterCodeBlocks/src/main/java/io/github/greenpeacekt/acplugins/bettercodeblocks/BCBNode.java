@@ -27,13 +27,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
             if (this.lang == "ansi") {
-                Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-                Matcher matcher = pattern.matcher(this.content);
-            
-                StringBuffer result = new StringBuffer();
-                    
-                String matched = matcher.group(1);
-                this.content = matched.replaceAll("\\[\\d+;\\d+m", "");
+                this.content.replaceAll("\\[\\d+;\\d+m", "");
             }
             builder.append(this.content);
             int b = builder.length();
