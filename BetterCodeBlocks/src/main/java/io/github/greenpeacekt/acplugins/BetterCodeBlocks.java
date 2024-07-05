@@ -16,6 +16,7 @@ import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 
 import java.util.*;
+import java.utul.regex.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,7 +59,7 @@ public final class BetterCodeBlocks extends Plugin {
                 param.setResult(new ParseSpec<>(renderCodeBlock(lang, matcher.group(3)), param.args[2]));
             }else{
                 param.setResult(new ParseSpec<>(devrenderCodeBlock(lang, matcher.group(3)), param.args[2]));
-                }
+            }
             
         }));
 
@@ -91,7 +92,12 @@ public final class BetterCodeBlocks extends Plugin {
                 int a = builder.length();
                 var rendered = render(lang, (String) param.args[3]);
                 var ctx = (Context) param.args[0];
-                wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
+                if (lang == "ansi") {
+                    String regex  = "\\[\\d+;\\d+m";
+                    Pattern p = Pattern.compile(regex);
+                    Matcher m = p.matcher(ctx);
+                }
+                wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx.replaceAll("")));
                 if (rendered instanceof String) Util.fixColor(builder, ctx, a);
                 param.setResult(builder);
                 
