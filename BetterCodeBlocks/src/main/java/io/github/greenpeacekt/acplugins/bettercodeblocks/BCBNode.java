@@ -20,7 +20,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
     }
 
     public final void render(SpannableStringBuilder builder, RC rc) {
-        String ct = this.content;
+        CharSequence ct = this.content;
         if (builder != null) {
             Util.ensureEndsWithNewline(builder);
             int a = builder.length();
