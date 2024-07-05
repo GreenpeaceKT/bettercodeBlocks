@@ -40,7 +40,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 }
                 sb.setLength(0);
                 matcher.appendTail(sb);
-                builder.append(sb.toString());
+                //builder.append(sb.toString());
             } else {
                 builder.append(this.content);
             }
