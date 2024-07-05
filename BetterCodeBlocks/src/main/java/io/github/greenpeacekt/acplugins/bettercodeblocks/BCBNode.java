@@ -28,7 +28,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
             StringBuffer sb = new StringBuffer();
-            builder.append(this.content);
+            //builder.append(this.content);
             Pattern pattern = Pattern.compile("\\[\\d+;\\d+m");
             Matcher matcher = pattern.matcher(builder.toString());
             if (this.lang == "ansi") {
