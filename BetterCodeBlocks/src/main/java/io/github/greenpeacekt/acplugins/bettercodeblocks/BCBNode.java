@@ -41,7 +41,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 }
                 sb.setLength(0);
                 matcher.appendTail(sb);
-                builder.append(sb.toString())
+                builder.append(sb.toString());
             }
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
