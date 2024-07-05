@@ -29,7 +29,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             }
             StringBuffer sb = new StringBuffer();
             Pattern pattern = Pattern.compile("\\[\\d+;\\d+m");
-            Matcher matcher = pattern.matcher(this.content);
+            Matcher matcher = pattern.matcher(this.content.toString());
             if (this.lang == "ansi") {
                 while(matcher.find()){
                     sb.setLength(0);
