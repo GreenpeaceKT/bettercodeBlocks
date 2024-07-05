@@ -20,6 +20,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
     }
 
     public final void render(SpannableStringBuilder builder, RC rc) {
+        String ct = this.content;
         if (builder != null) {
             Util.ensureEndsWithNewline(builder);
             int a = builder.length();
@@ -27,9 +28,9 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
             if (this.lang == "ansi") {
-                this.content.replaceAll("\\[\\d+;\\d+m", "");
+                ct.replaceAll("\\[\\d+;\\d+m", "");
             }
-            builder.append(this.content);
+            builder.append(ct);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
             builder.setSpan(new RelativeSizeSpan(0.85f), a, b, 33);
