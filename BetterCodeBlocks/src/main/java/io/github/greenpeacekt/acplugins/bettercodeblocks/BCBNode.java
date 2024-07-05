@@ -33,9 +33,9 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             if (this.lang == "ansi") {
                 while(matcher.find()){
                     sb.setLength(0);
-                    String group = matcher.group();
-                    String spanText = group.substring(1, group.length() - 1);
-                    matcher.appendReplacement(sb, spanText);
+                    String group = matcher.group(1);
+                    String replaced = matched.replaceAll("\\[\\d+;\\d+m", "");
+                    matcher.appendReplacement(sb, "```ansi" + replaced + "```");
 
                 }
                 sb.setLength(0);
