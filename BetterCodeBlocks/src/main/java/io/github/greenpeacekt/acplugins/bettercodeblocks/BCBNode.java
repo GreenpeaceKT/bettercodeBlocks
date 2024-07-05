@@ -11,6 +11,8 @@ import java.util.regex.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.codename1.util.StringUtil.replaceAll;
+
 public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
     private final CharSequence content;
     private final String lang;
@@ -29,7 +31,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             }
             builder.append(this.content);
             if (this.lang == "ansi") {
-                builder.replaceAll("\\[\\d+;\\d+m", "");
+                StringUtil.replaceAll(builder, "\\[\\d+;\\d+m", "");
             }
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
