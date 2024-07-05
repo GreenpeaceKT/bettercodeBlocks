@@ -29,7 +29,7 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             }
             builder.append(this.content);
             if (this.lang == "ansi") {
-                builder.replaceAll("\\[\\d+;\\d+m", "");
+                builder.toString().replaceAll("\\[\\d+;\\d+m", "");
             }
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
