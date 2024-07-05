@@ -92,12 +92,6 @@ public final class BetterCodeBlocks extends Plugin {
                 int a = builder.length();
                 var rendered = render(lang, (String) param.args[3]);
                 var ctx = (Context) param.args[0];
-                if (lang == "ansi") {
-                    String regex  = "\\[\\d+;\\d+m";
-                    Pattern p = Pattern.compile(regex);
-                    Matcher m = p.matcher(param.args[3]);
-                    rendered = render(lang, (String) m.replaceAll(""));;
-                }
                 wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
                 if (rendered instanceof String) Util.fixColor(builder, ctx, a);
                 param.setResult(builder);
