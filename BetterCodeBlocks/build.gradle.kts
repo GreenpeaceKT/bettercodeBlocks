@@ -1,4 +1,4 @@
-version = "1.2.6"
+version = "1.2.7"
 
 description = "コードブロックをWeblikeにします"
 
@@ -37,7 +37,7 @@ aliucord {
         * 不具合を修整
         # v1.2.4
         * fixの色彩を修整
-        # v1.2.5
+        # v1.2.7
         * 一部のansiタグに対応しました
         * diffの赤字を見やすくしました
     """.trimIndent())
