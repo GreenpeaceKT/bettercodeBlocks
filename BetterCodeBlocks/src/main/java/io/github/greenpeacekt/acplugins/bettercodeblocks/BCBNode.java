@@ -27,10 +27,10 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             if (this.lang != null) {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
+            builder.append(this.content);
             if (this.lang == "ansi") {
                 builder.replaceAll("\\[\\d+;\\d+m", "");
             }
-            builder.append(this.content);
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
             builder.setSpan(new RelativeSizeSpan(0.85f), a, b, 33);
