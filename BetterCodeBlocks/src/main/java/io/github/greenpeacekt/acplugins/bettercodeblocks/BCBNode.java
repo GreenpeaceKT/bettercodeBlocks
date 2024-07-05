@@ -7,6 +7,7 @@ import com.discord.simpleast.core.node.Node;
 import com.discord.utilities.textprocessing.node.BasicRenderContext;
 
 import java.util.*;
+import java.util.regex.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
