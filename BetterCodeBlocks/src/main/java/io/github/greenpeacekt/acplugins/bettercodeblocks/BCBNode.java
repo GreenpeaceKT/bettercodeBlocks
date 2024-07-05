@@ -27,9 +27,21 @@ public final class BCBNode<RC extends BasicRenderContext> extends Node<RC> {
             if (this.lang != null) {
                 LangNode.renderLang(builder, rc.getContext(), this.lang, a);
             }
+            StringBuffer sb = new StringBuffer();
             builder.append(this.content);
+            Pattern pattern = Pattern.compile("\\[\\d+;\\d+m");
+            Matcher matcher = pattern.matcher(builder.toString());
             if (this.lang == "ansi") {
-                builder.toString().replaceAll("\\[\\d+;\\d+m", "");
+                while(matcher.find()){
+                    sb.setLength(0);
+                    String group = matcher.group();
+                    String spanText = group.substring(1, group.length() - 1);
+                    matcher.appendReplacement(sb, spanText);
+
+                }
+                sb.setLength(0);
+                matcher.appendTail(sb);
+                builder.append(sb.toString())
             }
             int b = builder.length();
             builder.setSpan(new TypefaceSpan("monospace"), a, b, 33);
