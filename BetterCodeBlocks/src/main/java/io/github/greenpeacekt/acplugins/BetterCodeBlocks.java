@@ -16,7 +16,7 @@ import com.discord.utilities.textprocessing.node.BasicRenderContext;
 import com.discord.utilities.textprocessing.node.BlockBackgroundNode;
 
 import java.util.*;
-import java.utul.regex.*;
+import java.util.regex.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -95,9 +95,10 @@ public final class BetterCodeBlocks extends Plugin {
                 if (lang == "ansi") {
                     String regex  = "\\[\\d+;\\d+m";
                     Pattern p = Pattern.compile(regex);
-                    Matcher m = p.matcher(ctx);
+                    Matcher m = p.matcher(param.args[3]);
+                    rendered = render(lang, (String) m.replaceAll(""));;
                 }
-                wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx.replaceAll("")));
+                wrapInNodes(lang, rendered).render(builder, new MDUtils.RenderContext(ctx));
                 if (rendered instanceof String) Util.fixColor(builder, ctx, a);
                 param.setResult(builder);
                 
